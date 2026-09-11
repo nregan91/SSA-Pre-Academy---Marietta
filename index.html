@@ -324,7 +324,7 @@
     </div>
     <div class="phases">
       <div class="phase" style="--pcolor: var(--honey)"><div class="time tnum">10<small>mins</small></div><div class="body"><h3>Ball Mastery</h3><p>Every player, a ball each. Juggling and ball-skill moves to warm up feet and eyes before we get to work.</p><span class="tag">Same start every session</span></div></div>
-      <div class="phase" style="--pcolor: var(--accent)"><div class="time tnum">50<small>mins</small></div><div class="body"><h3>Stations</h3><p>Four stations built around the week's topic. Each takes a whole group (~11 players) and is set up for <b>maximum touches</b> — a ball each or several small groups working at once. Any drill with a line runs as several short lines of no more than 3, so nobody stands and waits. A parent-coach or two run each station and stay put while the groups rotate every 12 minutes.</p><span class="tag">4 × 12 min · ~11 per grid · built for max touches</span></div></div>
+      <div class="phase" style="--pcolor: var(--accent)"><div class="time tnum">50<small>mins</small></div><div class="body"><h3>Stations</h3><p>Four stations built around the week's topic. Each takes a whole group (~11 players) and is set up for <b>maximum touches</b> — a ball each or several small groups working at once. Any drill with a line runs as several short lines of no more than 3, so nobody stands and waits. A parent-coach or two run each station and stay put; each group starts at its own coaches' grid and rotates clockwise to the next every 12 minutes.</p><span class="tag">4 × 12 min · ~11 per grid · built for max touches</span></div></div>
       <div class="phase" style="--pcolor: var(--pitch)"><div class="time tnum">15<small>mins</small></div><div class="body"><h3>Small-Sided Games</h3><p>We finish with four small-sided games at once — each group plays on its own grid, 5v5 or 6v6 depending on who's there. Real play where the day's skill shows up, and every child is always involved.</p><span class="tag">4 grids · 5v5 or 6v6</span></div></div>
     </div>
     <div class="legend" id="legend" aria-label="How to read the diagrams"></div>
@@ -787,7 +787,7 @@
     return `<div class="board">
       ${q[0]}${q[1]}${q[2]}${q[3]}
     </div>
-    <div class="rotstrip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span><b>Rotate every 12 minutes.</b> Coaches stay at their grid; each group moves on together — Grid 1 → 2 → 3 → 4 → back to 1.</span></div>`;
+    <div class="rotstrip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span><b>Rotate every 12 minutes.</b> Each group starts at its own coaches' grid, then moves <b>clockwise</b> to the next. Coaches stay put.</span></div>`;
   }
 
   function stationCard(s, i, topic) {
