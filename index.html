@@ -206,6 +206,22 @@
   .pcard ul { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: .92rem; }
   .pcard ul li { margin: 3px 0; }
 
+  .headcoach { display: inline-flex; align-items: center; gap: 9px; background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line)); border-radius: 999px; padding: 7px 15px 7px 9px; margin-bottom: 18px; font-size: .92rem; }
+  .headcoach .hc-badge { font-family: var(--sans); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; font-size: .6rem; color: #fff; background: var(--accent); padding: 4px 9px; border-radius: 999px; }
+  .headcoach b { color: var(--ink); }
+  .group-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 12px; }
+  .gcard { border: 1px solid var(--line); border-top: 4px solid var(--gc, var(--accent)); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
+  .ghead { display: flex; align-items: center; gap: 10px; padding: 14px 15px 11px; }
+  .gswatch { width: 26px; height: 26px; border-radius: 7px; background: var(--gc); border: 1px solid rgba(0,0,0,.18); flex: none; }
+  .gname { font-family: var(--sans); font-weight: 800; font-size: 1.15rem; color: var(--ink); line-height: 1; }
+  .gage { font-size: .78rem; color: var(--muted); font-weight: 600; margin-top: 3px; }
+  .gcount { margin-left: auto; font-size: .72rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .gcoaches { padding: 0 15px 13px; font-size: .88rem; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .gcoaches .clab { display: block; font-family: var(--sans); text-transform: uppercase; letter-spacing: .08em; font-size: .62rem; font-weight: 700; color: var(--gc, var(--accent)); margin-bottom: 4px; }
+  .gplayers { margin: 0; padding: 12px 16px 16px 34px; font-size: .85rem; color: var(--muted); }
+  .gplayers li { margin: 3px 0; }
+  .gplayers li::marker { color: var(--gc, var(--accent)); font-weight: 700; }
+
   footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--muted); font-size: .86rem; }
   footer .fnote { margin-top: 6px; }
 
@@ -278,6 +294,7 @@
     </a>
     <div class="navlinks">
       <a href="#how">Format</a>
+      <a href="#groups">Groups</a>
       <a href="#weeks">The Plan</a>
       <a href="#parents">Parents</a>
     </div>
@@ -325,10 +342,41 @@
       <div class="crow" style="--qc:var(--passing)"><span class="cg">Grid 1</span><span class="cn">Devon Brown &amp; Matt Hartenstein</span></div>
       <div class="crow" style="--qc:var(--dribbling)"><span class="cg">Grid 2</span><span class="cn">Austin Arvidson &amp; Jason Durso</span></div>
       <div class="crow" style="--qc:var(--shooting)"><span class="cg">Grid 3</span><span class="cn">Christopher Gibson &amp; Matt Baier</span></div>
-      <div class="crow" style="--qc:var(--games)"><span class="cg">Grid 4</span><span class="cn">Travis King &amp; Graham Vorhees</span></div>
+      <div class="crow" style="--qc:var(--games)"><span class="cg">Grid 4</span><span class="cn">Scott Vorhees &amp; Travis King</span></div>
     </div>
 
     <div class="legend" id="legend" aria-label="How to read the diagrams"></div>
+  </section>
+
+  <section id="groups" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Teams</div>
+      <h2>Groups &amp; Coaches</h2>
+      <p>Our players train in four groups by age, each with its own coaches and colors.</p>
+    </div>
+    <div class="headcoach"><span class="hc-badge">Head Coach</span> <b>Nathan Regan</b> — oversees all four groups</div>
+    <div class="group-grid">
+      <div class="gcard" style="--gc:#C8102E">
+        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Red Group</div><div class="gage">U6 / U7</div></div><span class="gcount">11 players</span></div>
+        <div class="gcoaches"><span class="clab">Coaches</span>Devon Brown · Matt Hartenstein</div>
+        <ol class="gplayers"><li>Xavier Carrero</li><li>Carter Hogan</li><li>Elijah Hartenstein</li><li>Five Smith</li><li>King Fernandez</li><li>Luke Autry</li><li>Lional Solis</li><li>Cairo Brown</li><li>LJ Palmer</li><li>Ezra Williams</li><li>Luke Mueller</li></ol>
+      </div>
+      <div class="gcard" style="--gc:#7C8AA0">
+        <div class="ghead"><span class="gswatch"></span><div><div class="gname">White Group</div><div class="gage">U6</div></div><span class="gcount">10 players</span></div>
+        <div class="gcoaches"><span class="clab">Coaches</span>Austin Arvidson · Jason Durso</div>
+        <ol class="gplayers"><li>Evan Druhot</li><li>Liam Bustos</li><li>Levi Killian</li><li>Ezequiel Zavala</li><li>Kobe Ruffin</li><li>Malia Davis</li><li>Ryann Rouissi</li><li>Zane Berjan</li><li>Brandon Minkley</li><li>Nasir Jinadu</li></ol>
+      </div>
+      <div class="gcard" style="--gc:#6D5AA6">
+        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Purple Group</div><div class="gage">Girls</div></div><span class="gcount">12 players</span></div>
+        <div class="gcoaches"><span class="clab">Coaches</span>Matt Baier · Christopher Gibson</div>
+        <ol class="gplayers"><li>Hailey Baier</li><li>Madelaine Sorgen</li><li>Zailey Cheeks</li><li>Anai Pope</li><li>Sophia Clayton</li><li>Gia Perry</li><li>Hue Hutchins</li><li>Finley Bessinger</li><li>Hunter Cate Underwood</li><li>June Hogan</li><li>Rosabella Gibson</li><li>Isabella Gibson</li></ol>
+      </div>
+      <div class="gcard" style="--gc:#22386B">
+        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Navy Group</div><div class="gage">U5 / U6</div></div><span class="gcount">11 players</span></div>
+        <div class="gcoaches"><span class="clab">Coaches</span>Scott Vorhees · Travis King</div>
+        <ol class="gplayers"><li>Sutton King</li><li>Jacob Sanchez</li><li>Graham Voorhees</li><li>Anthony Nogueira</li><li>Griffin Ramirez</li><li>CJ Colston</li><li>Otis Welker</li><li>Alec Munguia</li><li>Gia Perry</li><li>Zoey Durso</li><li>Mia Arvidson</li></ol>
+      </div>
+    </div>
   </section>
 
   <section id="weeks" class="wrap">
@@ -743,7 +791,7 @@
     { n: "Devon Brown & Matt Hartenstein", c: "var(--passing)" },
     { n: "Austin Arvidson & Jason Durso", c: "var(--dribbling)" },
     { n: "Christopher Gibson & Matt Baier", c: "var(--shooting)" },
-    { n: "Travis King & Graham Vorhees", c: "var(--games)" }
+    { n: "Scott Vorhees & Travis King", c: "var(--games)" }
   ];
 
   function boardHTML(stations, topic) {
