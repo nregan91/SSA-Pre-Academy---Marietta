@@ -184,6 +184,21 @@
   .ssg-card .t { font-weight: 600; } .ssg-card .d { color: var(--muted); font-size: .88rem; margin-top: 2px; }
   .ssg-card .watch { margin-top: 6px; }
 
+  .st-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .st-item { display: flex; gap: 12px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--sc, var(--accent)); border-radius: 10px; padding: 11px 13px; }
+  .st-g { font-family: var(--sans); font-weight: 800; font-size: .68rem; text-transform: uppercase; letter-spacing: .04em; color: var(--sc, var(--accent)); background: color-mix(in srgb, var(--sc, var(--accent)) 13%, var(--surface)); border-radius: 6px; padding: 4px 7px; white-space: nowrap; margin-top: 1px; flex: none; }
+  .st-body { min-width: 0; }
+  .st-t { font-weight: 600; font-size: .96rem; }
+  .st-d { color: var(--muted); font-size: .86rem; line-height: 1.45; margin-top: 1px; }
+  .ssg-line { display: flex; gap: 12px; align-items: flex-start; background: color-mix(in srgb, var(--pitch) 9%, var(--surface)); border: 1px solid color-mix(in srgb, var(--pitch) 30%, var(--line)); border-radius: 11px; padding: 12px 14px; }
+  .ssg-line .ssg-ico { color: var(--pitch); flex: none; margin-top: 1px; }
+  .ssg-line b { color: var(--ink); }
+
+  .tw-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tw-badge { font-family: var(--sans); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .64rem; color: #fff; background: var(--accent); padding: 5px 11px; border-radius: 999px; }
+  #thisweek-label { font-family: var(--sans); font-weight: 700; color: var(--ink); font-size: 1.05rem; }
+  #thisweek .week { border-left-width: 6px; }
+
   .points { margin: 20px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 7px; }
   .points li { font-size: .82rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); padding: 5px 10px 5px 8px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
   .points li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--tcolor, var(--accent)); flex: none; }
@@ -221,6 +236,17 @@
   .gplayers { margin: 0; padding: 12px 16px 16px 34px; font-size: .85rem; color: var(--muted); }
   .gplayers li { margin: 3px 0; }
   .gplayers li::marker { color: var(--gc, var(--accent)); font-weight: 700; }
+
+  .loc-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .loc-card { display: flex; align-items: flex-start; gap: 11px; border: 1px solid var(--line); border-left: 5px solid var(--lc); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); padding: 13px 15px; }
+  .loc-card.now { --lc: #16a34a; } .loc-card.soon { --lc: #C67F0A; }
+  .loc-badge { font: 700 .62rem var(--sans); text-transform: uppercase; letter-spacing: .06em; color: #fff; background: var(--lc); padding: 4px 9px; border-radius: 999px; white-space: nowrap; margin-top: 1px; flex: none; }
+  .loc-card b { color: var(--ink); } .loc-card .lc-d { color: var(--muted); font-size: .9rem; }
+  .locmap-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  .locmap { width: 100%; min-width: 660px; height: auto; display: block; }
+  .loc-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .84rem; color: var(--muted); }
+  .loc-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .loc-legend i { width: 14px; height: 14px; border-radius: 4px; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line-strong); }
 
   footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--muted); font-size: .86rem; }
   footer .fnote { margin-top: 6px; }
@@ -270,7 +296,8 @@
   .navlinks a { color: var(--ink); text-decoration: none; padding: 8px 12px; border-radius: 10px; }
   .navlinks a:hover { background: var(--surface-2); }
   .navlinks a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  @media (max-width: 480px) { .navlinks a[href="#how"] { display: none; } .lockup .l2 { display: none; } }
+  @media (max-width: 720px) { .navlinks a[href="#how"], .navlinks a[href="#groups"], .navlinks a[href="#location"] { display: none; } }
+  @media (max-width: 420px) { .lockup .l2 { display: none; } .navlinks a[href="#parents"] { display: none; } }
   .hero .wrap { padding-bottom: 6px; }
   .ftr { display: flex; align-items: center; gap: 13px; justify-content: center; text-align: left; }
   .fcrest { flex: none; }
@@ -293,9 +320,11 @@
       <span class="lockup"><span class="l1">SSA Swarm FC</span><span class="l2">Pre Academy</span></span>
     </a>
     <div class="navlinks">
-      <a href="#how">Format</a>
-      <a href="#groups">Groups</a>
+      <a href="#thisweek">This Week</a>
       <a href="#weeks">The Plan</a>
+      <a href="#location">Location</a>
+      <a href="#groups">Groups</a>
+      <a href="#how">Format</a>
       <a href="#parents">Parents</a>
     </div>
   </div>
@@ -316,6 +345,72 @@
 </header>
 
 <main>
+  <section id="thisweek" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" style="color:var(--accent)">Start Here</div>
+      <h2>This week's session</h2>
+      <p>Tap <b>Monday</b> or <b>Wednesday</b> below to see that day's plan. The full season is further down under The Plan.</p>
+    </div>
+    <div class="tw-head"><span class="tw-badge">Now</span><span id="thisweek-label"></span></div>
+    <div id="thisweek-card"></div>
+  </section>
+
+  <section id="location" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Where We Train</div>
+      <h2>Training location</h2>
+      <p>We're at the Mud Creek complex. The fields we'll use are highlighted below.</p>
+    </div>
+    <div class="loc-cards">
+      <div class="loc-card now"><span class="loc-badge">Now</span><div><b>Fields 5C &amp; 5D</b><div class="lc-d">Grass fields on the far right — while the turf is closed.</div></div></div>
+      <div class="loc-card soon"><span class="loc-badge">When turf opens</span><div><b>Fields 2A &amp; 2C</b><div class="lc-d">We move onto the turf pad (left-center).</div></div></div>
+    </div>
+    <div class="locmap-wrap">
+      <svg viewBox="0 0 1000 300" class="locmap" role="img" aria-label="Mud Creek field map. Now: fields 5C and 5D. When turf opens: fields 2A and 2C.">
+        <rect x="0" y="0" width="1000" height="300" fill="#4a7a43"/>
+        <rect x="250" y="14" width="470" height="34" rx="4" fill="#2b2f36"/>
+        <text x="485" y="36" fill="#cfd3d8" font-family="var(--sans)" font-size="13" font-weight="600" text-anchor="middle">Parking</text>
+        <!-- Field 1 (grass, not used) -->
+        <rect x="18" y="150" width="212" height="136" rx="8" fill="rgba(0,0,0,0.16)" stroke="#C8102E" stroke-width="2"/>
+        <text x="124" y="143" fill="#f0a9b3" font-family="var(--sans)" font-size="12" font-weight="700" text-anchor="middle">Field 1</text>
+        <!-- Field 2 turf pad -->
+        <rect x="246" y="56" width="104" height="230" rx="8" fill="#2c5233" stroke="#2563eb" stroke-width="2"/>
+        <text x="298" y="50" fill="#a9c4f0" font-family="var(--sans)" font-size="12" font-weight="700" text-anchor="middle">Field 2 · Turf</text>
+        <!-- Field 2 cells: col1 x=254, col2 x=302 (w44); rows y=64,116,168,220 (h44) -->
+        <g font-family="var(--sans)" font-size="13" font-weight="700" text-anchor="middle">
+          <rect x="254" y="64" width="44" height="44" rx="5" fill="#E8A317" stroke="#fff" stroke-width="3"/><text x="276" y="91" fill="#3a2a00">2A</text>
+          <rect x="302" y="64" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="91" fill="#e9f0e9">2B</text>
+          <rect x="254" y="116" width="44" height="44" rx="5" fill="#E8A317" stroke="#fff" stroke-width="3"/><text x="276" y="143" fill="#3a2a00">2C</text>
+          <rect x="302" y="116" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="143" fill="#e9f0e9">2D</text>
+          <rect x="254" y="168" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="276" y="195" fill="#e9f0e9">2E</text>
+          <rect x="302" y="168" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="195" fill="#e9f0e9">2F</text>
+          <rect x="254" y="220" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="276" y="247" fill="#e9f0e9">2G</text>
+          <rect x="302" y="220" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="247" fill="#e9f0e9">2H</text>
+        </g>
+        <!-- Fields 3 & 4 (not used) -->
+        <rect x="440" y="66" width="150" height="220" rx="8" fill="rgba(0,0,0,0.16)" stroke="#16a34a" stroke-width="2"/>
+        <text x="515" y="182" fill="#b9e6c6" font-family="var(--sans)" font-size="15" font-weight="700" text-anchor="middle">Field 3</text>
+        <rect x="610" y="66" width="150" height="220" rx="8" fill="rgba(0,0,0,0.16)" stroke="#16a34a" stroke-width="2"/>
+        <text x="685" y="182" fill="#b9e6c6" font-family="var(--sans)" font-size="15" font-weight="700" text-anchor="middle">Field 4</text>
+        <!-- Road -->
+        <rect x="786" y="30" width="8" height="256" fill="#2b2f36"/>
+        <!-- Field 5 (grass) -->
+        <rect x="814" y="158" width="172" height="128" rx="8" fill="#3a5f3a" stroke="#7c3aed" stroke-width="2"/>
+        <text x="900" y="152" fill="#c9b6f0" font-family="var(--sans)" font-size="12" font-weight="700" text-anchor="middle">Field 5 · Grass</text>
+        <g font-family="var(--sans)" font-size="15" font-weight="700" text-anchor="middle">
+          <rect x="822" y="166" width="74" height="52" rx="6" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="859" y="198" fill="#e9f0e9">5A</text>
+          <rect x="904" y="166" width="74" height="52" rx="6" fill="#16a34a" stroke="#fff" stroke-width="3"/><text x="941" y="198" fill="#fff">5C</text>
+          <rect x="822" y="226" width="74" height="52" rx="6" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="859" y="258" fill="#e9f0e9">5B</text>
+          <rect x="904" y="226" width="74" height="52" rx="6" fill="#16a34a" stroke="#fff" stroke-width="3"/><text x="941" y="258" fill="#fff">5D</text>
+        </g>
+      </svg>
+    </div>
+    <div class="loc-legend">
+      <span><i style="background:#16a34a"></i>Training now (turf closed) — 5C &amp; 5D</span>
+      <span><i style="background:#C67F0A"></i>When turf opens — 2A &amp; 2C</span>
+    </div>
+  </section>
+
   <section id="how" class="wrap">
     <div class="sec-head">
       <div class="eyebrow">The Format</div>
@@ -364,18 +459,16 @@
 
   <section id="weeks" class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">The Season · 12 Weeks</div>
-      <h2>Weekly plan</h2>
-      <p>Each week is one topic, rotating in order — Dribbling, Passing, Shooting, then Games &amp; Shape — with a different session Monday and Wednesday. We opened with two weeks of small-sided games (now complete). Tap a week, then choose the day.</p>
+      <div class="eyebrow">All 12 Weeks</div>
+      <h2>Full season plan</h2>
+      <p>The topics rotate in order — Dribbling, Passing, Shooting — with a different session Monday and Wednesday. Tap a week, then choose the day. (This week's session is featured up top.)</p>
     </div>
-    <div class="blocks" id="blocks"></div>
     <div class="controls" role="group" aria-label="Filter weeks by topic">
       <span class="label">Filter</span>
       <button class="chip" data-filter="all" aria-pressed="true"><span class="dot" style="--cdot: var(--muted)"></span>All</button>
       <button class="chip" data-filter="Dribbling" aria-pressed="false"><span class="dot" style="--cdot: var(--dribbling)"></span>Dribbling</button>
       <button class="chip" data-filter="Passing" aria-pressed="false"><span class="dot" style="--cdot: var(--passing)"></span>Passing</button>
       <button class="chip" data-filter="Shooting" aria-pressed="false"><span class="dot" style="--cdot: var(--shooting)"></span>Shooting</button>
-      <button class="chip" data-filter="Games &amp; Shape" aria-pressed="false"><span class="dot" style="--cdot: var(--games)"></span>Games &amp; Shape</button>
       <button class="expand-all" id="expandAll" type="button" style="margin-left:auto">Expand all</button>
     </div>
     <div class="weeks" id="weekList"></div>
@@ -609,29 +702,7 @@
           ssg: { a: "game", t: "5v5/6v6 shooters' game", d: "Games to goals where everyone is encouraged to shoot on sight.", v: "shooting small sided soccer game youth" } }
       } },
 
-    { n: 6, mon: "Oct 5", wed: "Oct 7", topic: "Games & Shape", phase: "Apply",
-      points: ["Spread out", "Find space", "Know which way you attack", "Support the ball"],
-      home: { t: "Spot the spacing", d: "Watch a bit of a soccer game and point out players spreading out to get open.", v: "kids soccer positioning explained simple" },
-      sessions: {
-        mon: { warm: "Spread-out tag — dribble and stay far from everyone; the coach calls out anyone bunched up.",
-          stations: [
-            { t: "Spread Out", a: "spread", d: "Keep-ball where you must use the whole grid — reward players who find space.", v: "youth soccer spacing spread out drill" },
-            { t: "Which Goal?", a: "attackShape", d: "Quick games learning which goal to attack and which to defend.", v: "which way to attack soccer positioning kids" },
-            { t: "2v2 to Goals", a: "game2", d: "Two-a-side to small goals — spread out and find the open teammate.", v: "2v2 soccer small sided game kids" },
-            { t: "Waves to Goal", a: "waves", d: "Attack in twos toward goal, staying wide.", v: "attacking waves soccer positioning drill youth" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 — stay in your space", d: "Reward teams that spread out and don't all chase the ball at once.", v: "soccer spacing small sided game youth" } },
-        wed: { warm: "Get-open moves — on the coach's call, jog into an open space and show for a pass.",
-          stations: [
-            { t: "Find the Gap", a: "pockets", d: "Move to an empty box to receive — always find the space nobody is in.", v: "moving to space soccer drill youth" },
-            { t: "Support Triangle", a: "passFollow", d: "After a pass, move to make a triangle so there's always an option.", v: "support angles triangle soccer drill kids" },
-            { t: "Four-Goal Game", a: "pockets", d: "Two goals to attack rewards switching play and using the whole field.", v: "four goal soccer game spacing youth" },
-            { t: "Attack this Way", a: "attackShape", d: "Games with a clear direction — everyone knows the goal to attack.", v: "attacking direction soccer game kids" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 — spread & support", d: "Reward good spacing and players who support the ball-carrier.", v: "support play small sided soccer game youth" } }
-      } },
-
-    { n: 7, mon: "Oct 12", wed: "Oct 14", topic: "Dribbling", phase: "Develop",
+    { n: 6, mon: "Oct 5", wed: "Oct 7", topic: "Dribbling", phase: "Develop",
       points: ["Change of speed", "Protect the ball", "Both feet", "Head up to see space"],
       home: { t: "Yard sprints", d: "Dribble the length of the yard and back six times, small touches all the way.", v: "dribbling speed practice at home soccer kids" },
       sessions: {
@@ -653,7 +724,7 @@
           ssg: { a: "game", t: "5v5/6v6 — dribble to score", d: "Dribble under control into the end zone to score.", v: "dribbling to score small sided game youth" } }
       } },
 
-    { n: 8, mon: "Oct 19", wed: "Oct 21", topic: "Passing", phase: "Develop",
+    { n: 7, mon: "Oct 12", wed: "Oct 14", topic: "Passing", phase: "Develop",
       points: ["Pass into space", "Call for it", "First touch out of feet", "Move after you pass"],
       home: { t: "Moving passes", d: "Pass back and forth with a family member while both slowly walk — 5 minutes.", v: "moving passing drill soccer at home" },
       sessions: {
@@ -675,7 +746,7 @@
           ssg: { a: "game", t: "5v5/6v6 + a neutral", d: "A floating neutral joins whoever has the ball, so there's always a pass on.", v: "neutral player possession soccer game youth" } }
       } },
 
-    { n: 9, mon: "Oct 26", wed: "Oct 28", topic: "Shooting", phase: "Develop",
+    { n: 8, mon: "Oct 19", wed: "Oct 21", topic: "Shooting", phase: "Develop",
       points: ["Head steady over the ball", "Strike through the middle", "Quick feet to set up", "Follow your shot"],
       home: { t: "Dribble to a finish", d: "Dribble three touches, then strike a target — 10 reps each foot.", v: "shooting on the move practice at home kids" },
       sessions: {
@@ -697,29 +768,7 @@
           ssg: { a: "game", t: "5v5/6v6 with keepers", d: "Rotate a keeper each round. Reward composure and quick shots.", v: "soccer game with keepers youth shooting" } }
       } },
 
-    { n: 10, mon: "Nov 2", wed: "Nov 4", topic: "Games & Shape", phase: "Compete",
-      points: ["Move to space", "Support your teammate", "Spread the field", "Compete and have fun"],
-      home: { t: "Get-open game", d: "In the yard, practice running into space to get open for a pass.", v: "get open create space soccer kids" },
-      sessions: {
-        mon: { warm: "Get-open moves — jog and, on a call, dash into space and show for a pass.",
-          stations: [
-            { t: "Find the Gap", a: "pockets", d: "Move to an empty box to receive — always find the open space.", v: "moving to space soccer drill youth" },
-            { t: "Support Triangle", a: "passFollow", d: "After a pass, move to make a triangle so there's always an option.", v: "support angles triangle soccer drill kids" },
-            { t: "Four-Goal Game", a: "pockets", d: "Two goals to attack rewards switching play and using the whole field.", v: "four goal soccer game spacing youth" },
-            { t: "Champions Game", a: "game", d: "Competitive small game — use dribble, pass, shoot, and good spacing.", v: "small sided soccer game competitive kids" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 group tournament", d: "Round-robin games within the group. Play everyone, keep it fun.", v: "round robin soccer tournament kids" } },
-        wed: { warm: "Switch-the-field jog — pass and jog to the opposite side, keeping the shape wide.",
-          stations: [
-            { t: "Spread & Switch", a: "spread", d: "Keep-ball where you score points for switching the ball across the grid.", v: "switch play spacing soccer drill youth" },
-            { t: "Attack & Recover", a: "attackShape", d: "Score, then hurry back to your own half to defend. Learn both jobs.", v: "attack and defend transition soccer kids" },
-            { t: "Waves to Goal", a: "waves", d: "Attack in twos, stay wide, and finish.", v: "attacking waves finishing soccer game" },
-            { t: "Tournament Game", a: "game", d: "Competitive games — bring everything together.", v: "small sided soccer tournament kids" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 champions", d: "Final competitive games — spread out, support, and compete.", v: "5v5 soccer game kids competitive" } }
-      } },
-
-    { n: 11, mon: "Nov 9", wed: "Nov 11", topic: "Dribbling", phase: "Combine",
+    { n: 9, mon: "Oct 26", wed: "Oct 28", topic: "Dribbling", phase: "Combine",
       points: ["Sell the move", "Explode after the move", "Protect the ball", "Stay balanced"],
       home: { t: "Master one move", d: "Practice one move 20 times with each foot. Slow, then a bit faster.", v: "soccer skill moves for kids step over foot roll" },
       sessions: {
@@ -741,8 +790,7 @@
           ssg: { a: "game", t: "5v5/6v6 — 1v1 to score", d: "A zone where you must beat someone before you can score.", v: "1v1 small sided soccer game youth" } }
       } },
 
-    { n: 12, mon: "Nov 16", wed: "Nov 18", topic: "Passing", phase: "Combine",
-      note: "Final training week — the season wraps up the weekend of Nov 22. Celebrate a great fall!",
+    { n: 10, mon: "Nov 2", wed: "Nov 4", topic: "Passing", phase: "Combine",
       points: ["Scan before you receive", "Pass and support", "Weight of pass", "Talk to teammates"],
       home: { t: "Two-touch wall", d: "Receive and pass against a wall, two touches, 3 minutes each foot.", v: "two touch wall passing soccer at home" },
       sessions: {
@@ -754,14 +802,59 @@
             { t: "3v1 Rondo", a: "rondo", d: "Three keep the ball from one — quick, sharp passes win.", v: "3v1 rondo soccer drill youth" }
           ],
           ssg: { a: "game", t: "5v5/6v6 + a neutral", d: "A floating neutral is always on your team — find the free pass.", v: "neutral player possession soccer game youth" } },
-        wed: { warm: "Season showcase — players pick a favorite passing move to warm up with.",
+        wed: { warm: "Wall-pass warm-up — one-twos with a partner acting as a wall, then swap.",
           stations: [
             { t: "Fast Diamond", a: "diamond", d: "Timed passing around the diamond — how many clean laps before the buzzer?", v: "timed passing diamond soccer challenge youth" },
             { t: "One-Two to Goal", a: "giveGo", d: "Combine with a partner past a cone, then finish. Passing into a game.", v: "one two to goal soccer combination kids" },
             { t: "Keep-Away 4v1", a: "rondo", d: "Four keep the ball from one — support angles and quick passes.", v: "4v1 rondo keep away soccer youth" },
-            { t: "Pass & Shoot", a: "rollStrike", d: "One-two with the coach, then finish. A fun end-of-season combo.", v: "pass and shoot soccer combination drill youth" }
+            { t: "Moving Targets", a: "targetsPass", d: "Pass to a partner who jogs between cones — lead them into space.", v: "passing to moving target soccer drill youth" }
           ],
-          ssg: { a: "game", t: "5v5/6v6 celebration games", d: "One last set of games together — high-fives, goals, and smiles.", v: "end of season celebration soccer game kids" } }
+          ssg: { a: "game", t: "5v5/6v6 — two-pass goal", d: "Goals count after two passes — a quick combination first.", v: "possession small sided soccer game youth" } }
+      } },
+
+    { n: 11, mon: "Nov 9", wed: "Nov 11", topic: "Shooting", phase: "Compete",
+      points: ["Laces, not toes", "Plant foot beside the ball", "Eyes on the ball", "Follow through — celebrate!"],
+      home: { t: "Ten strikes", d: "10 laces strikes into a soft target or pillow with each foot.", v: "soccer shooting practice at home for kids" },
+      sessions: {
+        mon: { warm: "Laces taps & gentle strikes — tap the laces on top of the ball, then soft strikes into your hands.",
+          stations: [
+            { t: "Strike the Target", a: "targetsShot", d: "Shoot a still ball into a mini-goal from a marker. Step in and hit with the laces.", v: "youth soccer shooting technique laces kids" },
+            { t: "Knock 'Em Down", a: "knockdown", d: "Aim shots to topple cones or pins. A point for every one you knock over.", v: "soccer shooting target knock down drill kids" },
+            { t: "Roll & Strike", a: "rollStrike", d: "Coach rolls the ball, player runs on and strikes it into the goal.", v: "roll and shoot soccer finishing drill youth" },
+            { t: "Dribble-In Finish", a: "goalShot", d: "Two dribble touches, then shoot. Learning to shoot on the move.", v: "dribble and shoot soccer drill u7" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 to two goals", d: "Small goals so everyone gets shots off. Big celebrations for every goal.", v: "soccer game two goals youth shooting" } },
+        wed: { warm: "Big kicks — plant the standing foot, strike with laces into open space, jog and repeat.",
+          stations: [
+            { t: "Target Corners", a: "targetsShot", d: "Aim for cones in the goal corners. A point for hitting a corner.", v: "shooting to corners soccer accuracy drill kids" },
+            { t: "Bowling Pins", a: "knockdown", d: "A row of cone \"pins\" — how many can you knock down in your turns?", v: "soccer bowling shooting game kids" },
+            { t: "Pass & Finish", a: "rollStrike", d: "Pass to the coach, get it back, and finish first-time on goal.", v: "pass and finish soccer drill youth" },
+            { t: "Dribble & Shoot", a: "goalShot", d: "Dribble to a cone at pace, then shoot on the move.", v: "dribble and finish soccer shooting drill youth" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 shooters' game", d: "Games to goals where everyone is encouraged to shoot on sight.", v: "shooting small sided soccer game youth" } }
+      } },
+
+    { n: 12, mon: "Nov 16", wed: "Nov 18", topic: "Dribbling", phase: "Compete",
+      note: "Final training week — the season wraps up the weekend of Nov 22. Celebrate a great fall!",
+      points: ["Small touches", "Use both feet", "Head up", "Close control"],
+      home: { t: "Living-room dribble", d: "Weave through shoes or cushions for 5 minutes — as many laps as you can.", v: "at home dribbling drills for kids soccer" },
+      sessions: {
+        mon: { warm: "Sole rolls & bell taps — roll the ball side to side, then tap it inside-to-inside.",
+          stations: [
+            { t: "Cone Maze", a: "slalom", d: "Dribble in and out of a line of cones with small touches, then sprint back.", v: "cone dribbling drill youth soccer" },
+            { t: "Red Light, Green Light", a: "traffic", d: "Dribble in a square; on \"red light\" stop the ball dead with your sole.", v: "red light green light soccer dribbling" },
+            { t: "Gate Hunt", a: "gatesDribble", d: "Dribble through as many cone gates as you can in 60 seconds. Count out loud.", v: "dribbling gates soccer drill kids" },
+            { t: "Dribble & Freeze", a: "lane", d: "Dribble down the lane; on the whistle, freeze with a foot on top of the ball.", v: "dribble and stop soccer drill u6" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 — dribble to the end zone", d: "Score by dribbling under control into the end zone.", v: "dribbling small sided game youth" } },
+        wed: { warm: "Toe-taps & pull-backs — quick taps on top of the ball, then drag it back with the sole.",
+          stations: [
+            { t: "Follow the Leader", a: "slalom", d: "In small groups, copy the leader's path and touches around the cones.", v: "follow the leader dribbling soccer kids" },
+            { t: "Busy Box", a: "traffic", d: "Dribble in the box and swap places with a partner without bumping.", v: "dribbling awareness box soccer drill youth" },
+            { t: "Speed Bumps", a: "lane", d: "Dribble the lane, stopping the ball on top of each cone \"speed bump.\"", v: "dribbling control cones soccer drill kids" },
+            { t: "Gate Points", a: "gatesDribble", d: "Each gate you dribble through is a point — find gates nobody is using.", v: "dribbling gates points game soccer youth" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 — dribble-in goals", d: "You must dribble the ball over the line to score. Rewards close control.", v: "dribble to score small sided game youth" } }
       } }
   ];
 
@@ -797,48 +890,41 @@
     </div>`;
   }
 
-  function sessionHTML(w, sess, day) {
-    const stations = sess.stations.map((s, i) => stationCard(s, i, w.topic)).join("");
+  function sessionHTML(w, sess) {
+    const stations = sess.stations.map((s, i) => `<li class="st-item" style="--sc:${COACH[i].c}"><span class="st-g">Grid ${i + 1}</span><div class="st-body"><div class="st-t">${esc(s.t)}</div><div class="st-d">${esc(s.d)}</div>${watchLink(s.v)}</div></li>`).join("");
     return `
-      <p class="block-label">${day} · Session Board <span class="mins">4 grids · 2 coaches each · groups rotate</span></p>
       ${boardHTML(sess.stations, w.topic)}
-
-      <p class="block-label" style="margin-top:20px">Ball Mastery <span class="mins">10 min</span></p>
+      <p class="block-label" style="margin-top:18px">Ball Mastery <span class="mins">10 min</span></p>
       <div class="warm"><span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></span><div class="d">${esc(sess.warm)}</div></div>
 
-      <p class="block-label" style="margin-top:18px">Stations <span class="mins">4 × 12 min · ~11 per grid · 1–2 coaches each</span></p>
-      <div class="setupnote"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span><b>Built for your group (~11) — keep everyone moving.</b> Any drill with a line runs as <b>several short lines of no more than 3</b>, each with its own ball, lane, or gate. Nobody stands and waits — if a line backs up, split it into another. Maximum touches.</span></div>
-      <div class="stations">${stations}</div>
+      <p class="block-label" style="margin-top:18px">The Four Stations <span class="mins">12 min each · rotate clockwise</span></p>
+      <div class="setupnote"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span><b>Keep everyone moving.</b> Any drill with a line runs as <b>several short lines of no more than 3</b>, each with its own ball — nobody stands and waits.</span></div>
+      <ol class="st-list">${stations}</ol>
 
-      <div class="ssg">
-        <p class="block-label">Small-Sided Games <span class="mins">15 min · 4 grids · 5v5 or 6v6</span></p>
-        <div class="ssg-card"><div class="diagwrap">${diagram(ARCH[sess.ssg.a](), TCOLOR[w.topic])}</div><div><div class="t">${esc(sess.ssg.t)}</div><div class="d">${esc(sess.ssg.d)}</div>${watchLink(sess.ssg.v)}</div></div>
-      </div>`;
+      <p class="block-label" style="margin-top:18px">Small-Sided Games <span class="mins">15 min · 5v5 or 6v6</span></p>
+      <div class="ssg-line"><span class="ssg-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M12 6v12M3 10h3v4H3zM18 10h3v4h-3z"/></svg></span><div><b>${esc(sess.ssg.t)}</b><div class="st-d">${esc(sess.ssg.d)}</div>${watchLink(sess.ssg.v)}</div></div>`;
   }
 
   function weekCard(w) {
-    const ph = PHASES[w.phase] || { focus: "" };
     const points = w.points.map(p => `<li>${esc(p)}</li>`).join("");
     const note = w.note ? `<div class="holiday"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div>${esc(w.note)}</div></div>` : "";
     const donePill = w.done ? `<span class="donepill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Done</span>` : `<span></span>`;
     return `<details class="week${w.done ? " done" : ""}" data-topic="${esc(w.topic)}" style="--tcolor:${TCOLOR[w.topic]}">
       <summary>
         <span class="wknum"><small>Week</small>${w.n}</span>
-        <span class="wkmeta"><span class="topic">${esc(w.label || w.topic)}</span><span class="dates"><span class="dchip"><span class="dd">Mon</span>${esc(w.mon)}</span><span class="dchip"><span class="dd">Wed</span>${esc(w.wed)}</span></span></span>
+        <span class="wkmeta"><span class="topic">${esc(w.label || w.topic)}</span></span>
         ${donePill}
-        <span class="pill">${esc(w.phase)}</span>
+        <span class="pill tnum">Mon ${esc(w.mon)} · Wed ${esc(w.wed)}</span>
         <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
       <div class="wkbody">
         ${note}
-        <div class="focus"><span class="badge">${esc(w.phase)}</span><p>${esc(ph.focus)}</p></div>
-
         <div class="sesstabs" role="tablist">
-          <button class="stab" role="tab" aria-selected="true" data-sess="mon">Monday<span class="sday">${w.mon}</span></button>
-          <button class="stab" role="tab" aria-selected="false" data-sess="wed">Wednesday<span class="sday">${w.wed}</span></button>
+          <button class="stab" role="tab" aria-selected="true" data-sess="mon">Monday<span class="sday">${esc(w.mon)}</span></button>
+          <button class="stab" role="tab" aria-selected="false" data-sess="wed">Wednesday<span class="sday">${esc(w.wed)}</span></button>
         </div>
-        <div class="sesspanel" data-sess="mon" data-day="Monday · ${w.mon}">${sessionHTML(w, w.sessions.mon, "Monday")}</div>
-        <div class="sesspanel" data-sess="wed" data-day="Wednesday · ${w.wed}" hidden>${sessionHTML(w, w.sessions.wed, "Wednesday")}</div>
+        <div class="sesspanel" data-sess="mon">${sessionHTML(w, w.sessions.mon)}</div>
+        <div class="sesspanel" data-sess="wed" hidden>${sessionHTML(w, w.sessions.wed)}</div>
 
         <p class="points-label">Coaching points (both days)</p>
         <ul class="points" aria-label="Coaching points">${points}</ul>
@@ -850,7 +936,20 @@
 
   document.getElementById("weekList").innerHTML = WEEKS.map(weekCard).join("");
 
-  /* Monday / Wednesday tabs */
+  /* This week (auto-selected by date) featured at the top */
+  const weekDate = (w) => new Date(w.mon + " 2026 00:00:00");
+  const today = new Date();
+  let current = WEEKS.find(w => { const m = weekDate(w); const e = new Date(m); e.setDate(m.getDate() + 6); e.setHours(23, 59, 59); return today >= m && today <= e; })
+    || WEEKS.find(w => weekDate(w) >= today) || WEEKS[WEEKS.length - 1];
+  const twHost = document.getElementById("thisweek-card");
+  if (twHost) {
+    twHost.innerHTML = weekCard(current);
+    const d = twHost.querySelector(".week"); if (d) d.open = true;
+    const lbl = document.getElementById("thisweek-label");
+    if (lbl) lbl.textContent = "Week " + current.n + " · " + (current.label || current.topic);
+  }
+
+  /* Monday / Wednesday tabs (season list + this-week) */
   document.querySelectorAll(".week").forEach(wk => {
     const body = wk.querySelector(":scope > .wkbody");
     if (!body) return;
@@ -861,14 +960,6 @@
       panels.forEach(p => { p.hidden = p.dataset.sess !== tab.dataset.sess; });
     }));
   });
-
-  /* Season at a glance (per week) */
-  document.getElementById("blocks").innerHTML = WEEKS.map(w => {
-    const status = w.done
-      ? `<span class="st"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Done</span>`
-      : `<span class="st">Upcoming</span>`;
-    return `<div class="blk${w.done ? " done" : ""}" style="--bcolor:${TCOLOR[w.topic]}"><div class="wk">Week ${w.n} · ${esc(w.mon)}</div><div class="nm">${esc(w.label || SHORT[w.topic] || w.topic)}</div>${status}</div>`;
-  }).join("");
 
   /* Legend */
   const arrowSample = (cls, marker) => `<svg width="34" height="12" viewBox="0 0 34 12">${cls === "d-dribble" ? `<path class="a-line ${cls}" d="${zig([2, 6], [28, 6], 2.4, 5)}" marker-end="url(#${marker})"/>` : `<path class="a-line ${cls}" d="M2 6 H28" marker-end="url(#${marker})"/>`}</svg>`;
