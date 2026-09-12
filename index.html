@@ -194,6 +194,24 @@
   .ssg-line .ssg-ico { color: var(--pitch); flex: none; margin-top: 1px; }
   .ssg-line b { color: var(--ink); }
 
+  .daytoggle { display: inline-flex; gap: 4px; }
+  .dbtn { appearance: none; border: 1px solid var(--line-strong); background: var(--surface); color: var(--muted); font-family: var(--sans); font-weight: 600; font-size: .74rem; padding: 5px 9px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+  .dbtn b { color: var(--ink); font-weight: 700; }
+  .dbtn:hover { border-color: var(--muted); }
+  .dbtn[aria-pressed="true"] { background: var(--tcolor, var(--accent)); border-color: var(--tcolor, var(--accent)); color: #fff; }
+  .dbtn[aria-pressed="true"] b { color: #fff; }
+  .dbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .st-adapt { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .st-adapt .ad { font-size: .8rem; color: var(--muted); border-radius: 8px; padding: 6px 9px; line-height: 1.35; }
+  .st-adapt .ad b { display: block; font-family: var(--sans); text-transform: uppercase; letter-spacing: .05em; font-size: .58rem; margin-bottom: 2px; }
+  .st-adapt .ad-e { background: color-mix(in srgb, #16a34a 10%, var(--surface)); border: 1px solid color-mix(in srgb, #16a34a 24%, var(--line)); }
+  .st-adapt .ad-e b { color: #16743a; }
+  .st-adapt .ad-h { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line)); }
+  .st-adapt .ad-h b { color: var(--accent); }
+  .legend .lg svg { background: #2f7d3a; border-radius: 4px; }
+  @media (max-width: 560px) { .st-adapt { grid-template-columns: 1fr; } }
+
   .tw-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
   .tw-badge { font-family: var(--sans); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .64rem; color: #fff; background: var(--accent); padding: 5px 11px; border-radius: 999px; }
   #thisweek-label { font-family: var(--sans); font-weight: 700; color: var(--ink); font-size: 1.05rem; }
@@ -251,21 +269,21 @@
   footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--muted); font-size: .86rem; }
   footer .fnote { margin-top: 6px; }
 
-  .diag .d-a { fill: var(--topic, var(--accent)); stroke: var(--surface); stroke-width: 1; }
-  .diag .d-b { fill: var(--d-b); stroke: var(--surface); stroke-width: 1; }
-  .diag .d-coach { fill: var(--ink); }
-  .diag .d-cone { fill: var(--honey); }
-  .diag .d-ball { fill: #ffffff; stroke: #1B1A17; stroke-width: 1; }
-  .diag .d-zone { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 3; stroke-width: 1.4; }
-  .diag .d-goal { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; }
-  .diag .d-net { stroke: var(--line-strong); stroke-width: .7; }
-  .diag .d-txt { fill: var(--muted); font: 600 9px var(--sans); }
+  .diag .d-a { fill: var(--topic, var(--accent)); stroke: #fff; stroke-width: 1.1; }
+  .diag .d-b { fill: #141210; stroke: #fff; stroke-width: 1.1; }
+  .diag .d-coach { fill: #0f766e; stroke: #fff; stroke-width: 1; }
+  .diag .d-cone { fill: #f97316; stroke: #9a3412; stroke-width: .5; }
+  .diag .d-ball { fill: #ffffff; stroke: #141210; stroke-width: 1; }
+  .diag .d-zone { fill: rgba(255,255,255,.06); stroke: #fff; stroke-opacity: .7; stroke-dasharray: 4 3; stroke-width: 1.2; }
+  .diag .d-goal { stroke: #fff; stroke-width: 2.2; fill: none; stroke-linecap: round; }
+  .diag .d-net { stroke: #fff; stroke-opacity: .35; stroke-width: .7; }
+  .diag .d-txt { fill: #eafff0; font: 600 9px var(--sans); }
   .diag .d-plabel { fill: #fff; font: 700 8px var(--sans); text-anchor: middle; }
   .diag .a-line { fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-  .diag .d-pass { stroke: var(--ink); }
-  .diag .d-dribble { stroke: var(--honey); }
-  .diag .d-run { stroke: var(--d-run); stroke-dasharray: 5 4; }
-  .diag .d-shot { stroke: var(--accent); stroke-width: 2.5; }
+  .diag .d-pass { stroke: #101010; stroke-dasharray: 4 2.6; }
+  .diag .d-dribble { stroke: #ffd23f; stroke-width: 2.1; }
+  .diag .d-run { stroke: #7cc0ff; stroke-dasharray: 5 4; }
+  .diag .d-shot { stroke: #ff5a5a; stroke-width: 2.6; }
 
   @media (max-width: 620px) { .stations { grid-template-columns: 1fr; } .ssg-card { grid-template-columns: 1fr; } }
   @media (max-width: 560px) {
@@ -307,10 +325,10 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <marker id="ar-pass" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#1B1A17"/></marker>
-  <marker id="ar-dribble" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#C67F0A"/></marker>
-  <marker id="ar-run" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9" fill="none" stroke="#9A9184" stroke-width="1.6"/></marker>
-  <marker id="ar-shot" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#C8102E"/></marker>
+  <marker id="ar-pass" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#101010"/></marker>
+  <marker id="ar-dribble" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#ffd23f"/></marker>
+  <marker id="ar-run" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9" fill="none" stroke="#7cc0ff" stroke-width="1.8"/></marker>
+  <marker id="ar-shot" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#ff5a5a"/></marker>
 </defs></svg>
 
 <nav class="topnav">
@@ -434,18 +452,18 @@
     <div class="headcoach"><span class="hc-badge">Head Coach</span> <b>Nathan Regan</b> — oversees all four groups</div>
     <p style="color:var(--muted);font-size:.9rem;margin:0 0 18px;max-width:72ch;">These are the groups <b style="color:var(--ink);font-weight:600">for now</b> — they stay fluid, and players may move in and out of groups as the season goes. Any concerns, reach out to Nathan.</p>
     <div class="group-grid">
-      <div class="gcard" style="--gc:#C8102E">
-        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Red Group</div><div class="gage">U6 / U7</div></div><span class="gcount">11 players</span></div>
+      <div class="gcard" style="--gc:#E8730C">
+        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Orange Group</div><div class="gage">U6 / U7</div></div><span class="gcount">11 players</span></div>
         <div class="gcoaches"><span class="clab">Coaches</span>Devon Brown · Matt Hartenstein</div>
         <ol class="gplayers"><li>Xavier Carrero</li><li>Carter Hogan</li><li>Elijah Hartenstein</li><li>Five Smith</li><li>King Fernandez</li><li>Luke Autry</li><li>Lional Solis</li><li>Cairo Brown</li><li>LJ Palmer</li><li>Ezra Williams</li><li>Luke Mueller</li></ol>
       </div>
-      <div class="gcard" style="--gc:#7C8AA0">
-        <div class="ghead"><span class="gswatch"></span><div><div class="gname">White Group</div><div class="gage">U6</div></div><span class="gcount">10 players</span></div>
+      <div class="gcard" style="--gc:#2563EB">
+        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Blue Group</div><div class="gage">U6</div></div><span class="gcount">10 players</span></div>
         <div class="gcoaches"><span class="clab">Coaches</span>Austin Arvidson · Jason Durso</div>
         <ol class="gplayers"><li>Evan Druhot</li><li>Liam Bustos</li><li>Levi Killian</li><li>Ezequiel Zavala</li><li>Kobe Ruffin</li><li>Malia Davis</li><li>Ryann Rouissi</li><li>Zane Berjan</li><li>Brandon Minkley</li><li>Nasir Jinadu</li></ol>
       </div>
-      <div class="gcard" style="--gc:#6D5AA6">
-        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Purple Group</div><div class="gage">Girls</div></div><span class="gcount">12 players</span></div>
+      <div class="gcard" style="--gc:#EC4899">
+        <div class="ghead"><span class="gswatch"></span><div><div class="gname">Pink Group</div><div class="gage">Girls</div></div><span class="gcount">12 players</span></div>
         <div class="gcoaches"><span class="clab">Coaches</span>Matt Baier · Christopher Gibson</div>
         <ol class="gplayers"><li>Hailey Baier</li><li>Madelaine Sorgen</li><li>Zailey Cheeks</li><li>Anai Pope</li><li>Sophia Clayton</li><li>Gia Perry</li><li>Hue Hutchins</li><li>Finley Bessinger</li><li>Hunter Cate Underwood</li><li>June Hogan</li><li>Rosabella Gibson</li><li>Isabella Gibson</li></ol>
       </div>
@@ -536,9 +554,9 @@
       case "goal": return drawGoal(p.dir);
       case "txt": return `<text class="d-txt" x="${p.x}" y="${p.y}" text-anchor="middle">${p.s}</text>`;
       case "player": {
-        const cls = p.team === "b" ? "d-b" : "d-a";
         const lbl = p.label ? `<text class="d-plabel" x="${p.x}" y="${p.y + 3}">${p.label}</text>` : "";
-        return `<circle class="${cls}" cx="${p.x}" cy="${p.y}" r="7"/>${lbl}`;
+        if (p.team === "b") return `<rect class="d-b" x="${p.x - 6.5}" y="${p.y - 6.5}" width="13" height="13" rx="2.5"/>${lbl}`;
+        return `<circle class="d-a" cx="${p.x}" cy="${p.y}" r="7"/>${lbl}`;
       }
       case "arrow": {
         const d = p.s === "dribble" ? zig(p.from, p.to) : `M${p.from[0]} ${p.from[1]} L${p.to[0]} ${p.to[1]}`;
@@ -547,8 +565,13 @@
       default: return "";
     }
   }
+  function pitchBg() {
+    const W = VB.W, H = VB.H; let s = "";
+    for (let i = 0; i < 8; i++) s += `<rect x="${(2 + i * (W - 4) / 8).toFixed(1)}" y="2" width="${((W - 4) / 8).toFixed(1)}" height="${H - 4}" fill="${i % 2 ? '#000' : '#fff'}" fill-opacity="0.05"/>`;
+    return `<rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="5" fill="#2f7d3a"/>${s}<rect x="4" y="4" width="${W - 8}" height="${H - 8}" rx="3" fill="none" stroke="#fff" stroke-opacity="0.6" stroke-width="1.2"/><line x1="${(W / 2).toFixed(1)}" y1="4" x2="${(W / 2).toFixed(1)}" y2="${H - 4}" stroke="#fff" stroke-opacity="0.4" stroke-width="1"/><circle cx="${(W / 2).toFixed(1)}" cy="${(H / 2).toFixed(1)}" r="17" fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="1"/>`;
+  }
   function diagram(prims, topic) {
-    return `<svg class="diag" viewBox="0 0 ${VB.W} ${VB.H}" style="--topic:${topic}" role="img" aria-label="Drill diagram" preserveAspectRatio="xMidYMid meet">${prims.map(drawPrim).join("")}</svg>`;
+    return `<svg class="diag" viewBox="0 0 ${VB.W} ${VB.H}" style="--topic:${topic}" role="img" aria-label="Drill diagram" preserveAspectRatio="xMidYMid meet">${pitchBg()}${prims.map(drawPrim).join("")}</svg>`;
   }
 
   const ARCH = {
@@ -576,6 +599,34 @@
     pockets: () => [zone(28, 26, 82, 42), zone(130, 26, 82, 42), zone(28, 80, 82, 42), zone(130, 80, 82, 42), player(69, 47, "a"), player(171, 47, "a"), player(69, 101, "a"), player(171, 101, "a"), ball(120, 74), txt(120, 138, "One player per space")],
     attackShape: () => [goal("left"), goal("right"), player(70, 46, "a"), player(70, 104, "a"), player(118, 74, "a"), ball(124, 74), arr([58, 74], [196, 74], "run"), txt(120, 136, "Attack this way")],
     waves: () => [goal("right"), player(48, 54, "a"), player(48, 100, "a"), player(140, 76, "b", "D"), ball(56, 60), arr([56, 60], [118, 66], "dribble"), arr([150, 72], [212, 74], "shot")]
+  };
+
+  /* Two progressions per grid — make it easier or harder for the group's level. */
+  const ARCH_PROG = {
+    gate: { e: "Bring the gates closer; use a bigger, softer ball.", h: "Widen the gates and add a one-touch rule." },
+    targetsPass: { e: "Move targets closer; allow a set-up touch.", h: "Move targets back; hit it within two tries." },
+    knockdown: { e: "Shoot from closer with bigger targets.", h: "Step back and call which pin to hit." },
+    targetsShot: { e: "Shoot from closer into a bigger goal.", h: "Add a keeper or shrink the target." },
+    slalom: { e: "Space the cones wider; go slow.", h: "Tighten the cones and race the clock." },
+    gatesDribble: { e: "Fewer, wider gates.", h: "More gates, a time limit, weak foot only." },
+    lane: { e: "Shorter lane at walking pace.", h: "Longer lane; freeze the instant the whistle blows." },
+    traffic: { e: "Bigger box, fewer players.", h: "Shrink the box and add a tagger." },
+    goalShot: { e: "Shoot from closer with no defender.", h: "Add a passive defender; finish first-time." },
+    passFollow: { e: "Stand closer and walk it.", h: "Bigger triangle; two-touch maximum." },
+    relay: { e: "Shorter line; roll the ball.", h: "Longer line; the pass must be accurate to count." },
+    oneVone: { e: "Defender shadows only (passive).", h: "Defender goes live; smaller goal to score in." },
+    rondo: { e: "Bigger circle; the defender walks.", h: "Tighter circle, two-touch, or a second defender." },
+    giveGo: { e: "Partner stands still for the return.", h: "Add a defender to the give-and-go." },
+    diamond: { e: "Smaller diamond; two touches allowed.", h: "One-touch only; switch direction on a call." },
+    rollStrike: { e: "Coach rolls slowly from close range.", h: "Faster roll; finish first-time." },
+    shield: { e: "Defender stays behind and passive.", h: "Defender goes live; add a time limit to escape." },
+    game: { e: "Bigger field, more space; add a coach to pass to.", h: "Smaller field; two-touch; bonus for a team goal." },
+    game2: { e: "Bigger goals and more space.", h: "Smaller goals; must pass before scoring." },
+    lineSoccer: { e: "Call one number at a time (1v1).", h: "Call two numbers (2v2) for faster decisions." },
+    spread: { e: "Bigger grid; walk it.", h: "Shrink the grid; a defender punishes bunching." },
+    pockets: { e: "Bigger boxes; no pressure.", h: "A defender steals from any crowded box." },
+    attackShape: { e: "Walk through which goal to attack.", h: "Add live defenders and quick transitions." },
+    waves: { e: "2v1 in the attackers' favour.", h: "Make it even (2v2); defenders go live." }
   };
 
   const yt = (q) => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
@@ -864,10 +915,10 @@
   const watchLink = (q) => `<span class="watch"><a href="${yt(q)}" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch a demo</a></span>`;
 
   const COACH = [
-    { n: "Devon Brown & Matt Hartenstein", c: "var(--passing)" },
-    { n: "Austin Arvidson & Jason Durso", c: "var(--dribbling)" },
-    { n: "Christopher Gibson & Matt Baier", c: "var(--shooting)" },
-    { n: "Scott Vorhees & Travis King", c: "var(--games)" }
+    { n: "Devon Brown & Matt Hartenstein", c: "#E8730C" },
+    { n: "Austin Arvidson & Jason Durso", c: "#2563EB" },
+    { n: "Christopher Gibson & Matt Baier", c: "#EC4899" },
+    { n: "Scott Vorhees & Travis King", c: "#22386B" }
   ];
 
   function boardHTML(stations, topic) {
@@ -891,7 +942,7 @@
   }
 
   function sessionHTML(w, sess) {
-    const stations = sess.stations.map((s, i) => `<li class="st-item" style="--sc:${COACH[i].c}"><span class="st-g">Grid ${i + 1}</span><div class="st-body"><div class="st-t">${esc(s.t)}</div><div class="st-d">${esc(s.d)}</div>${watchLink(s.v)}</div></li>`).join("");
+    const stations = sess.stations.map((s, i) => { const p = ARCH_PROG[s.a] || { e: "", h: "" }; return `<li class="st-item" style="--sc:${COACH[i].c}"><span class="st-g">Grid ${i + 1}</span><div class="st-body"><div class="st-t">${esc(s.t)}</div><div class="st-d">${esc(s.d)}</div><div class="st-adapt"><span class="ad ad-e"><b>Easier</b>${esc(p.e)}</span><span class="ad ad-h"><b>Harder</b>${esc(p.h)}</span></div>${watchLink(s.v)}</div></li>`; }).join("");
     return `
       ${boardHTML(sess.stations, w.topic)}
       <p class="block-label" style="margin-top:18px">Ball Mastery <span class="mins">10 min</span></p>
@@ -914,15 +965,14 @@
         <span class="wknum"><small>Week</small>${w.n}</span>
         <span class="wkmeta"><span class="topic">${esc(w.label || w.topic)}</span></span>
         ${donePill}
-        <span class="pill tnum">Mon ${esc(w.mon)} · Wed ${esc(w.wed)}</span>
+        <span class="daytoggle">
+          <button type="button" class="dbtn" data-sess="mon" aria-pressed="true">Mon <b class="tnum">${esc(w.mon)}</b></button>
+          <button type="button" class="dbtn" data-sess="wed" aria-pressed="false">Wed <b class="tnum">${esc(w.wed)}</b></button>
+        </span>
         <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
       <div class="wkbody">
         ${note}
-        <div class="sesstabs" role="tablist">
-          <button class="stab" role="tab" aria-selected="true" data-sess="mon">Monday<span class="sday">${esc(w.mon)}</span></button>
-          <button class="stab" role="tab" aria-selected="false" data-sess="wed">Wednesday<span class="sday">${esc(w.wed)}</span></button>
-        </div>
         <div class="sesspanel" data-sess="mon">${sessionHTML(w, w.sessions.mon)}</div>
         <div class="sesspanel" data-sess="wed" hidden>${sessionHTML(w, w.sessions.wed)}</div>
 
@@ -949,15 +999,19 @@
     if (lbl) lbl.textContent = "Week " + current.n + " · " + (current.label || current.topic);
   }
 
-  /* Monday / Wednesday tabs (season list + this-week) */
+  /* Day buttons in the summary — open the card and show that day (clickable while collapsed) */
   document.querySelectorAll(".week").forEach(wk => {
-    const body = wk.querySelector(":scope > .wkbody");
-    if (!body) return;
-    const tabs = [...body.querySelectorAll(":scope > .sesstabs > .stab")];
-    const panels = [...body.querySelectorAll(":scope > .sesspanel")];
-    tabs.forEach(tab => tab.addEventListener("click", () => {
-      tabs.forEach(t => t.setAttribute("aria-selected", String(t === tab)));
-      panels.forEach(p => { p.hidden = p.dataset.sess !== tab.dataset.sess; });
+    const dbtns = [...wk.querySelectorAll(":scope > summary > .daytoggle > .dbtn")];
+    const panels = [...wk.querySelectorAll(":scope > .wkbody > .sesspanel")];
+    const select = (sess) => {
+      dbtns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.sess === sess)));
+      panels.forEach(p => { p.hidden = p.dataset.sess !== sess; });
+    };
+    dbtns.forEach(btn => btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      wk.open = true;
+      select(btn.dataset.sess);
     }));
   });
 
@@ -965,7 +1019,7 @@
   const arrowSample = (cls, marker) => `<svg width="34" height="12" viewBox="0 0 34 12">${cls === "d-dribble" ? `<path class="a-line ${cls}" d="${zig([2, 6], [28, 6], 2.4, 5)}" marker-end="url(#${marker})"/>` : `<path class="a-line ${cls}" d="M2 6 H28" marker-end="url(#${marker})"/>`}</svg>`;
   document.getElementById("legend").innerHTML = [
     `<span class="lg"><svg width="18" height="18" viewBox="0 0 18 18" class="diag" style="--topic:var(--muted)"><circle class="d-a" cx="9" cy="9" r="7"/></svg>Player</span>`,
-    `<span class="lg"><svg width="18" height="18" viewBox="0 0 18 18" class="diag"><circle class="d-b" cx="9" cy="9" r="7"/></svg>Defender</span>`,
+    `<span class="lg"><svg width="18" height="18" viewBox="0 0 18 18" class="diag"><rect class="d-b" x="3" y="3" width="12" height="12" rx="2.5"/></svg>Defender</span>`,
     `<span class="lg"><svg width="18" height="18" viewBox="0 0 18 18" class="diag"><circle class="d-ball" cx="9" cy="9" r="4"/></svg>Ball</span>`,
     `<span class="lg"><svg width="18" height="18" viewBox="0 0 18 18" class="diag"><path class="d-cone" d="M9 3 L4 13 L14 13 Z"/></svg>Cone / gate</span>`,
     `<span class="lg"><svg width="20" height="18" viewBox="0 0 20 18" class="diag"><path class="d-goal" d="M4 3 H16 V15 H4"/></svg>Goal</span>`,
