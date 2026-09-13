@@ -16,7 +16,7 @@
     --ground: #FAFAFA; --surface: #FFFFFF; --surface-2: #F5F5F4;
     --ink: #1F1B18; --muted: #737373; --line: #E5E5E5; --line-strong: #D4D4D4;
     --accent: #C8102E; --accent-dark: #9B0E22; --accent-ink: #FFFFFF; --honey: #C67F0A; --gold: #F5B301; --pitch: #2E7D46;
-    --passing: #2F6DB2; --dribbling: #C67F0A; --shooting: #C8102E; --games: #2E7D46; --shape: #6D5AA6;
+    --passing: #2F6DB2; --dribbling: #C67F0A; --shooting: #C8102E; --games: #2E7D46; --shape: #6D5AA6; --turning: #7C3AED;
     --good: #2E7D46; --d-b: #8C8577; --d-run: #9A9184;
     --shadow: 0 1px 2px rgba(20,18,16,.06), 0 8px 24px -12px rgba(20,18,16,.18);
     --radius: 16px; --fs-display: clamp(2.2rem, 6vw, 3.5rem); --maxw: 1024px;
@@ -211,6 +211,35 @@
   .st-adapt .ad-h b { color: var(--accent); }
   .legend .lg svg { background: #2f7d3a; border-radius: 4px; }
   @media (max-width: 560px) { .st-adapt { grid-template-columns: 1fr; } }
+
+  .emphasis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 4px; }
+  .em { border-radius: 11px; padding: 11px 14px; font-size: .9rem; color: var(--muted); }
+  .em .em-lbl { display: block; font-family: var(--sans); text-transform: uppercase; letter-spacing: .07em; font-size: .62rem; font-weight: 700; margin-bottom: 3px; }
+  .em-coach { background: color-mix(in srgb, var(--tcolor, var(--accent)) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--tcolor, var(--accent)) 26%, var(--line)); }
+  .em-coach .em-lbl { color: var(--tcolor, var(--accent)); } .em-coach span:last-child { color: var(--ink); }
+  .em-parent { background: color-mix(in srgb, var(--shape) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--shape) 24%, var(--line)); }
+  .em-parent .em-lbl { color: var(--shape); }
+  @media (max-width: 560px) { .emphasis { grid-template-columns: 1fr; } }
+
+  .gridcards { display: flex; flex-direction: column; gap: 12px; }
+  .gridcard { border: 1px solid var(--line); border-left: 5px solid var(--sc, var(--accent)); border-radius: 12px; background: var(--surface); overflow: hidden; box-shadow: var(--shadow); }
+  .gc-head { display: flex; align-items: center; gap: 8px; padding: 10px 13px; background: color-mix(in srgb, var(--sc, var(--accent)) 8%, var(--surface)); border-bottom: 1px solid var(--line); }
+  .gc-grid { font-family: var(--sans); font-weight: 800; font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: #fff; background: var(--sc, var(--accent)); border-radius: 6px; padding: 3px 8px; }
+  .gc-coach { font-size: .8rem; font-weight: 600; color: var(--sc, var(--accent)); }
+  .gc-top { display: grid; grid-template-columns: 220px 1fr; gap: 14px; padding: 13px; align-items: start; }
+  .gc-diag { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 6px; }
+  .gc-title { font-family: var(--sans); font-weight: 700; font-size: 1.1rem; }
+  .gc-obj { color: var(--muted); font-size: .9rem; margin-top: 3px; }
+  .gc-intro .watch { margin-top: 8px; }
+  .gc-body { padding: 0 13px 14px; }
+  .gc-sec { margin-top: 12px; }
+  .gc-sec h5 { margin: 0 0 5px; font-family: var(--sans); text-transform: uppercase; letter-spacing: .06em; font-size: .64rem; font-weight: 700; color: var(--muted); }
+  .gc-sec p { margin: 0; font-size: .9rem; color: var(--ink); }
+  .gc-sec ol, .gc-sec ul { margin: 0; padding-left: 18px; font-size: .88rem; color: var(--ink); }
+  .gc-sec li { margin: 3px 0; }
+  .gc-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .gridcard .st-adapt { margin-top: 14px; }
+  @media (max-width: 640px) { .gc-top { grid-template-columns: 1fr; } .gc-cols { grid-template-columns: 1fr; } }
 
   .tw-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
   .tw-badge { font-family: var(--sans); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .64rem; color: #fff; background: var(--accent); padding: 5px 11px; border-radius: 999px; }
@@ -484,8 +513,10 @@
       <span class="label">Filter</span>
       <button class="chip" data-filter="all" aria-pressed="true"><span class="dot" style="--cdot: var(--muted)"></span>All</button>
       <button class="chip" data-filter="Dribbling" aria-pressed="false"><span class="dot" style="--cdot: var(--dribbling)"></span>Dribbling</button>
+      <button class="chip" data-filter="Turning" aria-pressed="false"><span class="dot" style="--cdot: var(--turning)"></span>Turning</button>
       <button class="chip" data-filter="Passing" aria-pressed="false"><span class="dot" style="--cdot: var(--passing)"></span>Passing</button>
       <button class="chip" data-filter="Shooting" aria-pressed="false"><span class="dot" style="--cdot: var(--shooting)"></span>Shooting</button>
+      <button class="chip" data-filter="Small-Sided Games" aria-pressed="false"><span class="dot" style="--cdot: var(--games)"></span>Games</button>
       <button class="expand-all" id="expandAll" type="button" style="margin-left:auto">Expand all</button>
     </div>
     <div class="weeks" id="weekList"></div>
@@ -597,7 +628,10 @@
     spread: () => [player(64, 42, "a"), player(64, 106, "a"), player(120, 74, "a"), player(178, 46, "a"), player(178, 104, "a"), ball(126, 74), txt(120, 136, "Spread out — use the whole field")],
     pockets: () => [zone(28, 26, 82, 42), zone(130, 26, 82, 42), zone(28, 80, 82, 42), zone(130, 80, 82, 42), player(69, 47, "a"), player(171, 47, "a"), player(69, 101, "a"), player(171, 101, "a"), ball(120, 74), txt(120, 138, "One player per space")],
     attackShape: () => [goal("left"), goal("right"), player(70, 46, "a"), player(70, 104, "a"), player(118, 74, "a"), ball(124, 74), arr([58, 74], [196, 74], "run"), txt(120, 136, "Attack this way")],
-    waves: () => [goal("right"), player(48, 54, "a"), player(48, 100, "a"), player(140, 76, "b", "D"), ball(56, 60), arr([56, 60], [118, 66], "dribble"), arr([150, 72], [212, 74], "shot")]
+    waves: () => [goal("right"), player(48, 54, "a"), player(48, 100, "a"), player(140, 76, "b", "D"), ball(56, 60), arr([56, 60], [118, 66], "dribble"), arr([150, 72], [212, 74], "shot")],
+    turnGate: () => [player(30, 74, "a"), ball(38, 80), cone(178, 74), arr([42, 72], [166, 72], "dribble"), arr([170, 86], [46, 86], "dribble"), txt(178, 56, "turn!")],
+    turnBox: () => [zone(46, 30, 148, 88), player(84, 60, "a"), ball(90, 66), player(150, 92, "a"), ball(156, 98), arr([84, 60], [130, 60], "dribble"), arr([130, 60], [96, 92], "dribble"), txt(120, 132, "Turn on the whistle")],
+    turn1v1: () => [goal("left"), coach(206, 74), player(150, 74, "a", "A"), ball(158, 80), player(186, 74, "b", "D"), arr([200, 74], [166, 74], "pass"), arr([158, 82], [96, 74], "dribble"), txt(150, 56, "Receive · turn · go")]
   };
 
   /* Two progressions per grid — make it easier or harder for the group's level. */
@@ -625,7 +659,10 @@
     spread: { e: "Bigger grid; walk it.", h: "Shrink the grid; a defender punishes bunching." },
     pockets: { e: "Bigger boxes; no pressure.", h: "A defender steals from any crowded box." },
     attackShape: { e: "Walk through which goal to attack.", h: "Add live defenders and quick transitions." },
-    waves: { e: "2v1 in the attackers' favour.", h: "Make it even (2v2); defenders go live." }
+    waves: { e: "2v1 in the attackers' favour.", h: "Make it even (2v2); defenders go live." },
+    turnGate: { e: "Slow, big turns; walk to the cone.", h: "Add a time limit; weak foot only." },
+    turnBox: { e: "Bigger box, fewer players.", h: "Shrink the box; call turns more often." },
+    turn1v1: { e: "Defender shadows only (passive).", h: "Defender goes live once you turn." }
   };
 
   const yt = (q) => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
@@ -641,7 +678,7 @@
 
   // Each week: one topic, with a distinct Monday and Wednesday session (no repeated stations).
   const WEEKS = [
-    { n: 1, mon: "Aug 31", wed: "Sep 2", topic: "Games & Shape", label: "Small-Sided Games", phase: "Play", done: true,
+    { n: 1, mon: "Aug 31", wed: "Sep 2", topic: "Small-Sided Games", phase: "Play", done: true,
       points: ["Everyone touches the ball", "Find space", "Both teams have fun", "Chase and try"],
       home: { t: "Backyard games", d: "Play 1v1 or 2v2 in the yard with family. Just play and have fun.", v: "backyard soccer games for kids 2v2" },
       sessions: {
@@ -663,7 +700,7 @@
           ssg: { a: "game", t: "5v5/6v6 to four goals", d: "Two goals to attack keeps players spreading out — four games, one per grid.", v: "small sided four goals soccer game youth" } }
       } },
 
-    { n: 2, mon: "Sep 7", wed: "Sep 9", topic: "Games & Shape", label: "Small-Sided Games", phase: "Play", done: true,
+    { n: 2, mon: "Sep 7", wed: "Sep 9", topic: "Small-Sided Games", phase: "Play", done: true,
       note: "Mon Sep 7 was Labor Day — adjust if your group didn't meet.",
       points: ["Spread out", "Look for space", "Take a shot", "Cheer teammates"],
       home: { t: "Small-sided at home", d: "Set up two goals and play a game to small goals with siblings or friends.", v: "small sided soccer game backyard kids" },
@@ -708,7 +745,29 @@
           ssg: { a: "game", t: "5v5/6v6 — dribble-in goals", d: "You must dribble the ball over the line to score. Rewards close control.", v: "dribble to score small sided game youth" } }
       } },
 
-    { n: 4, mon: "Sep 21", wed: "Sep 23", topic: "Passing", phase: "Introduce",
+    { n: 4, mon: "Sep 21", wed: "Sep 23", topic: "Turning", phase: "Introduce",
+      points: ["Small touch into the turn", "Look before you turn", "Sole, inside & outside", "Accelerate out of it"],
+      home: { t: "Turn practice", d: "Dribble to a spot, turn with the sole, and go back — 20 turns each foot.", v: "soccer turning drills for kids at home" },
+      sessions: {
+        mon: { warm: "Sole rolls & drag-backs — roll the ball across, drag it back, both feet.",
+          stations: [
+            { t: "Turn at the Cone", a: "turnGate", d: "Dribble to the cone, turn with the sole, and dribble back.", v: "turn at the cone soccer drill youth" },
+            { t: "Stop & Turn", a: "lane", d: "Dribble the lane; on the whistle, stop the ball and turn to go back.", v: "stop and turn soccer drill kids" },
+            { t: "Turn Box", a: "turnBox", d: "Dribble in the box; on a call, turn away from everyone into space.", v: "turning in a box soccer drill youth" },
+            { t: "Gate Turns", a: "turnGate", d: "Dribble through a gate, turn, and come back through.", v: "turning gates soccer drill kids" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 — turn to escape", d: "A game where turning away from pressure keeps the ball.", v: "small sided game turning youth soccer" } },
+        wed: { warm: "Inside/outside hooks — turn the ball with the inside, then the outside, both feet.",
+          stations: [
+            { t: "Sole-Roll Turns", a: "turnBox", d: "Roll the ball across your body to turn away from a partner.", v: "sole roll turn soccer drill kids" },
+            { t: "Traffic Turns", a: "traffic", d: "Dribble in a busy box; turn to avoid bumping anyone.", v: "turning traffic soccer drill youth" },
+            { t: "Clock Turns", a: "turnGate", d: "Dribble to a cone, turn, and go to the next cone around the circle.", v: "turning clock soccer drill kids" },
+            { t: "Turn Race", a: "slalom", d: "Race to the cone, turn, and dribble back — first team wins.", v: "turning race soccer drill youth" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 — turn & go", d: "Reward players who turn out of trouble and drive forward.", v: "small sided game dribbling youth soccer" } }
+      } },
+
+    { n: 5, mon: "Sep 28", wed: "Sep 30", topic: "Passing", phase: "Introduce",
       points: ["Inside of the foot", "Look up first", "Firm, rolling pass", "Open your body"],
       home: { t: "Wall passes", d: "20 passes against a wall or curb with each foot. Trap it, pass it back.", v: "soccer wall passing practice at home kids" },
       sessions: {
@@ -730,7 +789,7 @@
           ssg: { a: "game", t: "5v5/6v6 — two-pass goal", d: "Goals count after two passes — a quick combination before finishing.", v: "possession small sided soccer game youth" } }
       } },
 
-    { n: 5, mon: "Sep 28", wed: "Sep 30", topic: "Shooting", phase: "Introduce",
+    { n: 6, mon: "Oct 5", wed: "Oct 7", topic: "Shooting", phase: "Introduce",
       points: ["Laces, not toes", "Plant foot beside the ball", "Eyes on the ball", "Follow through — celebrate!"],
       home: { t: "Ten strikes", d: "10 laces strikes into a soft target or pillow with each foot.", v: "soccer shooting practice at home for kids" },
       sessions: {
@@ -752,7 +811,29 @@
           ssg: { a: "game", t: "5v5/6v6 shooters' game", d: "Games to goals where everyone is encouraged to shoot on sight.", v: "shooting small sided soccer game youth" } }
       } },
 
-    { n: 6, mon: "Oct 5", wed: "Oct 7", topic: "Dribbling", phase: "Develop",
+    { n: 7, mon: "Oct 12", wed: "Oct 14", topic: "Small-Sided Games", phase: "Play",
+      points: ["Everyone touches the ball", "Find space", "Both teams have fun", "Chase and try"],
+      home: { t: "Backyard games", d: "Play 1v1 or 2v2 in the yard with family. Just play and have fun.", v: "backyard soccer games for kids 2v2" },
+      sessions: {
+        mon: { warm: "Dribble & tag — everyone dribbles in a box; taggers (no ball) try to tag. Ball close, eyes up.",
+          stations: [
+            { t: "Dribble Island", a: "traffic", d: "Everyone dribbles inside the box keeping the ball close — no bumping. A first-touch game.", v: "dribbling in a box soccer game u6" },
+            { t: "2v2 to Goals", a: "game2", d: "Two-a-side to small goals so everyone is always in the game.", v: "2v2 soccer small sided game kids" },
+            { t: "Line Soccer", a: "lineSoccer", d: "Two lines; the coach calls a number and those players race in to play.", v: "line soccer number game youth" },
+            { t: "4v4 Free Play", a: "game", d: "Just play. Coaches let it flow and cheer effort and goals.", v: "4v4 free play soccer u6" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 mini-league", d: "Each group plays its own game on its grid — four games at once.", v: "5v5 mini league soccer kids" } },
+        wed: { warm: "Ball-tag & freeze — dribble freely; on the whistle, stop the ball and strike a pose.",
+          stations: [
+            { t: "Sharks & Minnows", a: "traffic", d: "Minnows dribble across; sharks (no ball) try to kick balls out. Classic fun.", v: "sharks and minnows soccer dribbling game" },
+            { t: "Score in Any Gate", a: "pockets", d: "Score by dribbling through any of several gates. Heads up for the open one.", v: "score in gates soccer game kids" },
+            { t: "Waves to Goal", a: "waves", d: "Two attackers go at one defender toward goal, then the next wave goes.", v: "2v1 to goal soccer wave drill youth" },
+            { t: "King of the Pitch", a: "oneVone", d: "Quick 1v1s to a goal — winner stays on. Fast and fun.", v: "1v1 king of the pitch soccer game" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 to four goals", d: "Two goals to attack keeps players spreading out — four games, one per grid.", v: "small sided four goals soccer game youth" } }
+      } },
+
+    { n: 8, mon: "Oct 19", wed: "Oct 21", topic: "Dribbling", phase: "Develop",
       points: ["Change of speed", "Protect the ball", "Both feet", "Head up to see space"],
       home: { t: "Yard sprints", d: "Dribble the length of the yard and back six times, small touches all the way.", v: "dribbling speed practice at home soccer kids" },
       sessions: {
@@ -774,7 +855,29 @@
           ssg: { a: "game", t: "5v5/6v6 — dribble to score", d: "Dribble under control into the end zone to score.", v: "dribbling to score small sided game youth" } }
       } },
 
-    { n: 7, mon: "Oct 12", wed: "Oct 14", topic: "Passing", phase: "Develop",
+    { n: 9, mon: "Oct 26", wed: "Oct 28", topic: "Turning", phase: "Develop",
+      points: ["Sell it before you turn", "Turn tight and fast", "Both feet", "Explode into space"],
+      home: { t: "Move of the week", d: "Practice a drag-back or Cruyff turn 20 times each foot.", v: "cruyff turn drag back soccer kids" },
+      sessions: {
+        mon: { warm: "Turn combos — drag-back then push out, at walking pace, both feet.",
+          stations: [
+            { t: "Cruyff Gate", a: "turnGate", d: "Fake a pass, then turn the ball behind your standing leg through the gate.", v: "cruyff turn soccer drill youth" },
+            { t: "Turn & Go 1v1", a: "turn1v1", d: "Receive with your back to a defender, turn, and attack.", v: "turn and go 1v1 soccer drill youth" },
+            { t: "Shielding Turn", a: "shield", d: "Shield from a defender, then spin off to turn away.", v: "shield and turn soccer drill kids" },
+            { t: "Turn & Pass", a: "passFollow", d: "Turn away from pressure, then pass to a teammate.", v: "turn and pass soccer drill youth" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 — turn to switch", d: "Turning lets you switch the ball to the open side.", v: "small sided game switch play youth soccer" } },
+        wed: { warm: "Quick turns — turn on the whistle as fast as you can, both directions.",
+          stations: [
+            { t: "Turn Under Pressure", a: "turn1v1", d: "A coach applies light pressure; turn away and keep the ball.", v: "turning under pressure soccer drill youth" },
+            { t: "Turn & Shoot", a: "goalShot", d: "Receive, turn, and finish on goal.", v: "turn and shoot soccer drill youth" },
+            { t: "Gate Turns Race", a: "turnGate", d: "Through the gate, turn, and back — beat your partner.", v: "turning gates race soccer kids" },
+            { t: "Traffic Turns+", a: "turnBox", d: "Busy box; turn with a move (drag-back or Cruyff) to escape.", v: "turning moves box soccer drill youth" }
+          ],
+          ssg: { a: "game", t: "5v5/6v6 — turn & finish", d: "Turn out of pressure and attack the goal.", v: "small sided game finishing youth soccer" } }
+      } },
+
+    { n: 10, mon: "Nov 2", wed: "Nov 4", topic: "Passing", phase: "Develop",
       points: ["Pass into space", "Call for it", "First touch out of feet", "Move after you pass"],
       home: { t: "Moving passes", d: "Pass back and forth with a family member while both slowly walk — 5 minutes.", v: "moving passing drill soccer at home" },
       sessions: {
@@ -796,7 +899,7 @@
           ssg: { a: "game", t: "5v5/6v6 + a neutral", d: "A floating neutral joins whoever has the ball, so there's always a pass on.", v: "neutral player possession soccer game youth" } }
       } },
 
-    { n: 8, mon: "Oct 19", wed: "Oct 21", topic: "Shooting", phase: "Develop",
+    { n: 11, mon: "Nov 9", wed: "Nov 11", topic: "Shooting", phase: "Develop",
       points: ["Head steady over the ball", "Strike through the middle", "Quick feet to set up", "Follow your shot"],
       home: { t: "Dribble to a finish", d: "Dribble three touches, then strike a target — 10 reps each foot.", v: "shooting on the move practice at home kids" },
       sessions: {
@@ -818,99 +921,53 @@
           ssg: { a: "game", t: "5v5/6v6 with keepers", d: "Rotate a keeper each round. Reward composure and quick shots.", v: "soccer game with keepers youth shooting" } }
       } },
 
-    { n: 9, mon: "Oct 26", wed: "Oct 28", topic: "Dribbling", phase: "Combine",
-      points: ["Sell the move", "Explode after the move", "Protect the ball", "Stay balanced"],
-      home: { t: "Master one move", d: "Practice one move 20 times with each foot. Slow, then a bit faster.", v: "soccer skill moves for kids step over foot roll" },
+    { n: 12, mon: "Nov 16", wed: "Nov 18", topic: "Small-Sided Games", phase: "Play", note: "Final training week — the season wraps up the weekend of Nov 22. Celebrate a great fall!",
+      points: ["Everyone touches the ball", "Find space", "Both teams have fun", "Chase and try"],
+      home: { t: "Backyard games", d: "Play 1v1 or 2v2 in the yard with family. Just play and have fun.", v: "backyard soccer games for kids 2v2" },
       sessions: {
-        mon: { warm: "Move of the day — practice one move (foot-roll or step-over) slowly, both feet.",
+        mon: { warm: "Dribble & tag — everyone dribbles in a box; taggers (no ball) try to tag. Ball close, eyes up.",
           stations: [
-            { t: "1v1 Gates", a: "oneVone", d: "Beat the defender and dribble through any gate behind them.", v: "1v1 to gates soccer drill youth" },
-            { t: "Beat the Defender", a: "gatesDribble", d: "Use the day's move to get past a friendly defender, then accelerate.", v: "dribbling moves beat defender soccer kids" },
-            { t: "Shielding", a: "shield", d: "Keep the ball from a friendly defender inside a circle — body in between.", v: "shielding the ball soccer drill youth" },
-            { t: "Dribble & Finish", a: "goalShot", d: "Dribble through a gate, then finish on goal.", v: "dribble finish soccer drill kids" }
+            { t: "Dribble Island", a: "traffic", d: "Everyone dribbles inside the box keeping the ball close — no bumping. A first-touch game.", v: "dribbling in a box soccer game u6" },
+            { t: "2v2 to Goals", a: "game2", d: "Two-a-side to small goals so everyone is always in the game.", v: "2v2 soccer small sided game kids" },
+            { t: "Line Soccer", a: "lineSoccer", d: "Two lines; the coach calls a number and those players race in to play.", v: "line soccer number game youth" },
+            { t: "4v4 Free Play", a: "game", d: "Just play. Coaches let it flow and cheer effort and goals.", v: "4v4 free play soccer u6" }
           ],
-          ssg: { a: "game", t: "5v5/6v6 — dribble-through zone", d: "Dribble through a marked zone to unlock a shot.", v: "dribbling to score small sided game youth" } },
-        wed: { warm: "Two-move combo — practice linking two touches (roll then push) at walking pace.",
+          ssg: { a: "game", t: "5v5/6v6 mini-league", d: "Each group plays its own game on its grid — four games at once.", v: "5v5 mini league soccer kids" } },
+        wed: { warm: "Ball-tag & freeze — dribble freely; on the whistle, stop the ball and strike a pose.",
           stations: [
-            { t: "The Gauntlet", a: "traffic", d: "Dribble through a channel of friendly defenders without losing the ball.", v: "gauntlet dribbling soccer drill youth" },
-            { t: "Move & Go", a: "slalom", d: "Do a move at each cone, then explode to the next. Change of pace.", v: "dribbling moves and acceleration soccer kids" },
-            { t: "Keep-Away Shield", a: "shield", d: "1v1 keep-away in a circle — shield and spin away from the defender.", v: "1v1 shielding keep away soccer drill youth" },
-            { t: "Dribble-Shoot Combo", a: "goalShot", d: "Beat a cone with a move, then finish on goal.", v: "dribble move then shoot soccer drill kids" }
+            { t: "Sharks & Minnows", a: "traffic", d: "Minnows dribble across; sharks (no ball) try to kick balls out. Classic fun.", v: "sharks and minnows soccer dribbling game" },
+            { t: "Score in Any Gate", a: "pockets", d: "Score by dribbling through any of several gates. Heads up for the open one.", v: "score in gates soccer game kids" },
+            { t: "Waves to Goal", a: "waves", d: "Two attackers go at one defender toward goal, then the next wave goes.", v: "2v1 to goal soccer wave drill youth" },
+            { t: "King of the Pitch", a: "oneVone", d: "Quick 1v1s to a goal — winner stays on. Fast and fun.", v: "1v1 king of the pitch soccer game" }
           ],
-          ssg: { a: "game", t: "5v5/6v6 — 1v1 to score", d: "A zone where you must beat someone before you can score.", v: "1v1 small sided soccer game youth" } }
-      } },
-
-    { n: 10, mon: "Nov 2", wed: "Nov 4", topic: "Passing", phase: "Combine",
-      points: ["Scan before you receive", "Pass and support", "Weight of pass", "Talk to teammates"],
-      home: { t: "Two-touch wall", d: "Receive and pass against a wall, two touches, 3 minutes each foot.", v: "two touch wall passing soccer at home" },
-      sessions: {
-        mon: { warm: "Two-touch rhythm — receive across your body, pass with the other foot.",
-          stations: [
-            { t: "Pressure Passing", a: "diamond", d: "Pass around the diamond while a coach gently closes down — pass before pressure.", v: "passing under pressure soccer drill youth" },
-            { t: "Triangle & Move", a: "passFollow", d: "Pass and move to a new point of the triangle to support.", v: "triangle passing soccer drill kids" },
-            { t: "Receive & Finish", a: "giveGo", d: "One-two combination, then pass into a target goal.", v: "combination play soccer drill youth" },
-            { t: "3v1 Rondo", a: "rondo", d: "Three keep the ball from one — quick, sharp passes win.", v: "3v1 rondo soccer drill youth" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 + a neutral", d: "A floating neutral is always on your team — find the free pass.", v: "neutral player possession soccer game youth" } },
-        wed: { warm: "Wall-pass warm-up — one-twos with a partner acting as a wall, then swap.",
-          stations: [
-            { t: "Fast Diamond", a: "diamond", d: "Timed passing around the diamond — how many clean laps before the buzzer?", v: "timed passing diamond soccer challenge youth" },
-            { t: "One-Two to Goal", a: "giveGo", d: "Combine with a partner past a cone, then finish. Passing into a game.", v: "one two to goal soccer combination kids" },
-            { t: "Keep-Away 4v1", a: "rondo", d: "Four keep the ball from one — support angles and quick passes.", v: "4v1 rondo keep away soccer youth" },
-            { t: "Moving Targets", a: "targetsPass", d: "Pass to a partner who jogs between cones — lead them into space.", v: "passing to moving target soccer drill youth" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 — two-pass goal", d: "Goals count after two passes — a quick combination first.", v: "possession small sided soccer game youth" } }
-      } },
-
-    { n: 11, mon: "Nov 9", wed: "Nov 11", topic: "Shooting", phase: "Compete",
-      points: ["Laces, not toes", "Plant foot beside the ball", "Eyes on the ball", "Follow through — celebrate!"],
-      home: { t: "Ten strikes", d: "10 laces strikes into a soft target or pillow with each foot.", v: "soccer shooting practice at home for kids" },
-      sessions: {
-        mon: { warm: "Laces taps & gentle strikes — tap the laces on top of the ball, then soft strikes into your hands.",
-          stations: [
-            { t: "Strike the Target", a: "targetsShot", d: "Shoot a still ball into a mini-goal from a marker. Step in and hit with the laces.", v: "youth soccer shooting technique laces kids" },
-            { t: "Knock 'Em Down", a: "knockdown", d: "Aim shots to topple cones or pins. A point for every one you knock over.", v: "soccer shooting target knock down drill kids" },
-            { t: "Roll & Strike", a: "rollStrike", d: "Coach rolls the ball, player runs on and strikes it into the goal.", v: "roll and shoot soccer finishing drill youth" },
-            { t: "Dribble-In Finish", a: "goalShot", d: "Two dribble touches, then shoot. Learning to shoot on the move.", v: "dribble and shoot soccer drill u7" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 to two goals", d: "Small goals so everyone gets shots off. Big celebrations for every goal.", v: "soccer game two goals youth shooting" } },
-        wed: { warm: "Big kicks — plant the standing foot, strike with laces into open space, jog and repeat.",
-          stations: [
-            { t: "Target Corners", a: "targetsShot", d: "Aim for cones in the goal corners. A point for hitting a corner.", v: "shooting to corners soccer accuracy drill kids" },
-            { t: "Bowling Pins", a: "knockdown", d: "A row of cone \"pins\" — how many can you knock down in your turns?", v: "soccer bowling shooting game kids" },
-            { t: "Pass & Finish", a: "rollStrike", d: "Pass to the coach, get it back, and finish first-time on goal.", v: "pass and finish soccer drill youth" },
-            { t: "Dribble & Shoot", a: "goalShot", d: "Dribble to a cone at pace, then shoot on the move.", v: "dribble and finish soccer shooting drill youth" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 shooters' game", d: "Games to goals where everyone is encouraged to shoot on sight.", v: "shooting small sided soccer game youth" } }
-      } },
-
-    { n: 12, mon: "Nov 16", wed: "Nov 18", topic: "Dribbling", phase: "Compete",
-      note: "Final training week — the season wraps up the weekend of Nov 22. Celebrate a great fall!",
-      points: ["Small touches", "Use both feet", "Head up", "Close control"],
-      home: { t: "Living-room dribble", d: "Weave through shoes or cushions for 5 minutes — as many laps as you can.", v: "at home dribbling drills for kids soccer" },
-      sessions: {
-        mon: { warm: "Sole rolls & bell taps — roll the ball side to side, then tap it inside-to-inside.",
-          stations: [
-            { t: "Cone Maze", a: "slalom", d: "Dribble in and out of a line of cones with small touches, then sprint back.", v: "cone dribbling drill youth soccer" },
-            { t: "Red Light, Green Light", a: "traffic", d: "Dribble in a square; on \"red light\" stop the ball dead with your sole.", v: "red light green light soccer dribbling" },
-            { t: "Gate Hunt", a: "gatesDribble", d: "Dribble through as many cone gates as you can in 60 seconds. Count out loud.", v: "dribbling gates soccer drill kids" },
-            { t: "Dribble & Freeze", a: "lane", d: "Dribble down the lane; on the whistle, freeze with a foot on top of the ball.", v: "dribble and stop soccer drill u6" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 — dribble to the end zone", d: "Score by dribbling under control into the end zone.", v: "dribbling small sided game youth" } },
-        wed: { warm: "Toe-taps & pull-backs — quick taps on top of the ball, then drag it back with the sole.",
-          stations: [
-            { t: "Follow the Leader", a: "slalom", d: "In small groups, copy the leader's path and touches around the cones.", v: "follow the leader dribbling soccer kids" },
-            { t: "Busy Box", a: "traffic", d: "Dribble in the box and swap places with a partner without bumping.", v: "dribbling awareness box soccer drill youth" },
-            { t: "Speed Bumps", a: "lane", d: "Dribble the lane, stopping the ball on top of each cone \"speed bump.\"", v: "dribbling control cones soccer drill kids" },
-            { t: "Gate Points", a: "gatesDribble", d: "Each gate you dribble through is a point — find gates nobody is using.", v: "dribbling gates points game soccer youth" }
-          ],
-          ssg: { a: "game", t: "5v5/6v6 — dribble-in goals", d: "You must dribble the ball over the line to score. Rewards close control.", v: "dribble to score small sided game youth" } }
+          ssg: { a: "game", t: "5v5/6v6 to four goals", d: "Two goals to attack keeps players spreading out — four games, one per grid.", v: "small sided four goals soccer game youth" } }
       } }
   ];
 
   function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c])); }
-  const TCOLOR = { Dribbling: "var(--dribbling)", Passing: "var(--passing)", Shooting: "var(--shooting)", "Games & Shape": "var(--games)" };
-  const SHORT = { Dribbling: "Dribble", Passing: "Pass", Shooting: "Shoot", "Games & Shape": "Games & Shape" };
+  const TCOLOR = { Dribbling: "var(--dribbling)", Turning: "var(--turning)", Passing: "var(--passing)", Shooting: "var(--shooting)", "Small-Sided Games": "var(--games)", "Games & Shape": "var(--games)" };
+  const SHORT = { Dribbling: "Dribble", Turning: "Turning", Passing: "Pass", Shooting: "Shoot", "Small-Sided Games": "Games", "Games & Shape": "Games" };
+  const TOPIC_COPY = {
+    Dribbling: { emphasis: "Get every player tons of touches — reward close control and heads up when space opens.", takeaway: "Your player worked on dribbling with control. Lots of touches at home build every future skill." },
+    Turning: { emphasis: "Reward players who turn out of trouble to keep the ball and change direction.", takeaway: "Your player learned turns to escape pressure. Ask which turn helped them keep the ball." },
+    Passing: { emphasis: "Coach a firm, accurate inside-foot pass and good body shape before the pass.", takeaway: "Your player worked on passing with the inside of the foot — accuracy matters more than power." },
+    Shooting: { emphasis: "Encourage accuracy over power and a brave, positive mindset in front of goal.", takeaway: "Your player practiced shooting with accuracy. Cheer the effort and the aim, not just the goals." },
+    "Small-Sided Games": { emphasis: "Let them play — maximise touches, spread out, and keep it joyful.", takeaway: "Your player learned by playing. Small games grow decisions, spacing, and confidence." },
+    "Games & Shape": { emphasis: "Let them play — maximise touches, spread out, and keep it joyful.", takeaway: "Your player learned by playing. Small games grow decisions, spacing, and confidence." }
+  };
+  /* Rec-style per-grid detail — template on Week 3 (keyed by drill name). */
+  const DETAILED_WEEKS = new Set([3]);
+  const DETAIL = {
+    "Cone Maze": { setup: "A line of 5–6 cones ~1 yd apart per lane. Run 2–3 lanes so no more than 3 wait.", instructions: ["Dribble in and out of the cones with small touches.", "Use both feet — inside and outside.", "At the end, turn and dribble back."], coaching: ["Small touches, ball close.", "Head up between cones.", "Use both feet."], questions: ["Which foot kept the ball closest?", "When could you look up?"], mistakes: ["Touches too big, ball runs away.", "Only using one foot.", "Head down the whole time."] },
+    "Red Light, Green Light": { setup: "A 12×12 yd box, every player with a ball inside.", instructions: ["Dribble on \"green light\".", "On \"red light\", stop the ball dead with your sole.", "On \"yellow\", slow dribble."], coaching: ["Stop it dead — sole on top.", "Ball close so you can stop fast.", "Look up to avoid others."], questions: ["How did you stop quickly?", "How did you avoid bumping others?"], mistakes: ["Ball too far to stop in time.", "Watching only the ball.", "Stopping with the wrong part of the foot."] },
+    "Gate Hunt": { setup: "Scatter 6–8 cone gates (1 yd wide) around a 15×15 area.", instructions: ["Dribble through as many different gates as you can in 60 seconds.", "Count your gates out loud.", "No same gate twice in a row."], coaching: ["Head up to find open gates.", "Small touches through the gate.", "Change direction to the next gate."], questions: ["How did you find the next open gate?", "Did small touches help?"], mistakes: ["Charging the nearest gate only.", "Big touch loses it at the gate.", "Not looking up."] },
+    "Dribble & Freeze": { setup: "A 15-yd lane per group; run 2–3 lanes.", instructions: ["Dribble down the lane at a comfy pace.", "On the whistle, freeze with a foot on top of the ball.", "On the next whistle, go again."], coaching: ["Freeze instantly — control shows here.", "Ball close so you can stop on command.", "Balanced and ready."], questions: ["How fast could you freeze?", "What helped you stop under control?"], mistakes: ["Ball rolls past on the freeze.", "Too fast to control.", "Slow to react."] },
+    "Follow the Leader": { setup: "Small groups of 3 — a leader with a ball, others copy. Everyone has a ball.", instructions: ["The leader dribbles a path; the group copies the moves and turns.", "Swap the leader every 45 seconds.", "Keep good spacing."], coaching: ["Copy the touches, not just the path.", "Space out so you don't collide.", "Both feet."], questions: ["Which move was trickiest to copy?", "How did you keep spacing?"], mistakes: ["Following too close.", "Copying the path but not the control.", "Big touches."] },
+    "Busy Box": { setup: "A 12×12 box; everyone a ball; a couple of extra cones as obstacles.", instructions: ["Dribble around keeping the ball close.", "On a call, swap places with a partner without bumping.", "Head up."], coaching: ["Ball close in traffic.", "Eyes up to find space.", "Shield when someone's near."], questions: ["How did you find space to swap?", "When did you slow down?"], mistakes: ["Head down, bumping others.", "Ball too far ahead.", "Rushing into a crowd."] },
+    "Speed Bumps": { setup: "A lane with 3–4 cones as \"speed bumps\"; run 2–3 lanes.", instructions: ["Dribble the lane, stopping the ball on top of each cone.", "Then accelerate to the next bump.", "Both feet."], coaching: ["Controlled stop on each bump.", "Explode away after the stop.", "Change of pace."], questions: ["How did you speed up after the bump?", "Which foot stopped it best?"], mistakes: ["Not fully stopping on the bump.", "No acceleration after.", "One foot only."] },
+    "Gate Points": { setup: "Several 1-yd gates around a 15×15 area; play in pairs or small groups.", instructions: ["Each gate you dribble through cleanly is a point.", "Find gates nobody is using.", "Beat your score next round."], coaching: ["Head up for open gates.", "Small touches through.", "Change direction quickly."], questions: ["How did you get the most points?", "Did looking up help?"], mistakes: ["Queuing at one gate.", "Losing it through the gate.", "Head down."] }
+  };
+
   const watchLink = (q) => `<span class="watch"><a href="${yt(q)}" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch a demo</a></span>`;
 
   const COACH = [
@@ -940,8 +997,34 @@
     </div>`;
   }
 
+  const liList = (arr) => (arr || []).map(x => `<li>${esc(x)}</li>`).join("");
+  function adaptHTML(s) { const p = ARCH_PROG[s.a] || { e: "", h: "" }; return `<div class="st-adapt"><span class="ad ad-e"><b>Easier</b>${esc(p.e)}</span><span class="ad ad-h"><b>Harder</b>${esc(p.h)}</span></div>`; }
+
+  function compactItem(s, i, w) {
+    return `<li class="st-item" style="--sc:${COACH[i].c}"><span class="st-g">Grid ${i + 1}</span><div class="st-body"><div class="st-t">${esc(s.t)}</div><div class="st-d">${esc(s.d)}</div>${adaptHTML(s)}${watchLink(s.v)}</div></li>`;
+  }
+  function detailedCard(s, i, w) {
+    const d = DETAIL[s.t] || {};
+    return `<div class="gridcard" style="--sc:${COACH[i].c}">
+      <div class="gc-head"><span class="gc-grid">Grid ${i + 1}</span><span class="gc-coach">${esc(COACH[i].n)}</span></div>
+      <div class="gc-top"><div class="gc-diag">${diagram(ARCH[s.a](), TCOLOR[w.topic])}</div><div class="gc-intro"><div class="gc-title">${esc(s.t)}</div><div class="gc-obj">${esc(s.d)}</div>${watchLink(s.v)}</div></div>
+      <div class="gc-body">
+        <div class="gc-sec"><h5>Set up</h5><p>${esc(d.setup || "")}</p></div>
+        <div class="gc-sec"><h5>How it runs</h5><ol>${liList(d.instructions)}</ol></div>
+        <div class="gc-cols">
+          <div class="gc-sec"><h5>Coaching points</h5><ul>${liList(d.coaching)}</ul></div>
+          <div class="gc-sec"><h5>Ask the players</h5><ul>${liList(d.questions)}</ul></div>
+          <div class="gc-sec"><h5>Common mistakes</h5><ul>${liList(d.mistakes)}</ul></div>
+        </div>
+        ${adaptHTML(s)}
+      </div>
+    </div>`;
+  }
   function sessionHTML(w, sess) {
-    const stations = sess.stations.map((s, i) => { const p = ARCH_PROG[s.a] || { e: "", h: "" }; return `<li class="st-item" style="--sc:${COACH[i].c}"><span class="st-g">Grid ${i + 1}</span><div class="st-body"><div class="st-t">${esc(s.t)}</div><div class="st-d">${esc(s.d)}</div><div class="st-adapt"><span class="ad ad-e"><b>Easier</b>${esc(p.e)}</span><span class="ad ad-h"><b>Harder</b>${esc(p.h)}</span></div>${watchLink(s.v)}</div></li>`; }).join("");
+    const detailed = DETAILED_WEEKS.has(w.n) && sess.stations.some(s => DETAIL[s.t]);
+    const stationsHTML = detailed
+      ? `<div class="gridcards">${sess.stations.map((s, i) => detailedCard(s, i, w)).join("")}</div>`
+      : `<ol class="st-list">${sess.stations.map((s, i) => compactItem(s, i, w)).join("")}</ol>`;
     return `
       ${boardHTML(sess.stations, w.topic)}
       <p class="block-label" style="margin-top:18px">Ball Mastery <span class="mins">10 min</span></p>
@@ -949,7 +1032,7 @@
 
       <p class="block-label" style="margin-top:18px">The Four Stations <span class="mins">12 min each · rotate clockwise</span></p>
       <div class="setupnote"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span><b>Keep everyone moving.</b> Any drill with a line runs as <b>several short lines of no more than 3</b>, each with its own ball — nobody stands and waits.</span></div>
-      <ol class="st-list">${stations}</ol>
+      ${stationsHTML}
 
       <p class="block-label" style="margin-top:18px">Small-Sided Games <span class="mins">15 min · 5v5 or 6v6</span></p>
       <div class="ssg-line"><span class="ssg-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M12 6v12M3 10h3v4H3zM18 10h3v4h-3z"/></svg></span><div><b>${esc(sess.ssg.t)}</b><div class="st-d">${esc(sess.ssg.d)}</div>${watchLink(sess.ssg.v)}</div></div>`;
@@ -972,6 +1055,7 @@
       </summary>
       <div class="wkbody">
         ${note}
+        ${(() => { const c = TOPIC_COPY[w.topic] || {}; return `<div class="emphasis"><div class="em em-coach"><span class="em-lbl">Coach emphasis</span><span>${esc(c.emphasis || "")}</span></div><div class="em em-parent"><span class="em-lbl">Why it matters · parents</span><span>${esc(c.takeaway || "")}</span></div></div>`; })()}
         <div class="sesspanel" data-sess="mon">${sessionHTML(w, w.sessions.mon)}</div>
         <div class="sesspanel" data-sess="wed" hidden>${sessionHTML(w, w.sessions.wed)}</div>
 
