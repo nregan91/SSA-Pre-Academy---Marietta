@@ -350,6 +350,20 @@
   .fcrest { flex: none; }
   footer { text-align: left; }
   footer strong { color: var(--ink); }
+  /* Gameday / Shape */
+  .gameday-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 22px; align-items: start; margin-top: 6px; }
+  .formation { width: 100%; max-width: 340px; height: auto; display: block; border-radius: 12px; box-shadow: var(--shadow); }
+  .roles { display: flex; flex-direction: column; gap: 10px; }
+  .role { display: flex; gap: 12px; align-items: flex-start; border: 1px solid var(--line); border-left: 4px solid var(--rc, var(--accent)); border-radius: 12px; background: var(--surface); padding: 12px 14px; box-shadow: var(--shadow); }
+  .role .rdot { width: 26px; height: 26px; border-radius: 50%; background: var(--rc, var(--accent)); color: #fff; display: grid; place-items: center; font-family: var(--sans); font-weight: 800; font-size: .72rem; flex: none; }
+  .role .rname { font-family: var(--sans); font-weight: 800; color: var(--ink); }
+  .role .rdesc { color: var(--muted); font-size: .9rem; margin-top: 2px; line-height: 1.45; }
+  .role .rdesc b { color: var(--ink); }
+  .why-table { width: 100%; border-collapse: collapse; font-size: .92rem; margin-top: 20px; }
+  .why-table th, .why-table td { border: 1px solid var(--line); padding: 10px 13px; text-align: left; vertical-align: top; line-height: 1.45; }
+  .why-table thead th { background: var(--surface-2); font-family: var(--sans); text-transform: uppercase; font-size: .66rem; letter-spacing: .06em; color: var(--muted); }
+  .why-table td:first-child { font-family: var(--sans); font-weight: 800; color: var(--ink); width: 32%; }
+  @media (max-width: 720px) { .gameday-wrap { grid-template-columns: 1fr; } .formation { margin: 0 auto; } }
 </style>
 </head>
 <body>
@@ -371,6 +385,7 @@
       <a href="#weeks">The Plan</a>
       <a href="#location">Location</a>
       <a href="#groups">Groups</a>
+      <a href="#gameday">Gameday</a>
       <a href="#how">Format</a>
       <a href="#parents">Parents</a>
     </div>
@@ -501,6 +516,57 @@
         <ol class="gplayers"><li>Sutton King</li><li>Jacob Sanchez</li><li>Graham Voorhees</li><li>Anthony Nogueira</li><li>Griffin Ramirez</li><li>CJ Colston</li><li>Otis Welker</li><li>Alec Munguia</li><li>Zoey Durso</li><li>Mia Arvidson</li></ol>
       </div>
     </div>
+  </section>
+
+  <section id="gameday" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" style="color:var(--accent)">Game Day</div>
+      <h2>Shape — the 5v5 diamond</h2>
+      <p>Our game-day shape is the diamond (a 1-2-1): a goalkeeper, one defender at the back, a left and a right midfielder holding the width, and a forward up top. It gives young players clear front / back / left / right zones and natural triangle passing angles.</p>
+    </div>
+    <div class="gameday-wrap">
+      <svg viewBox="0 0 320 462" class="formation" role="img" aria-label="5v5 diamond formation with player zones">
+        <rect x="0" y="0" width="320" height="462" rx="10" fill="#2f7d3a"/>
+        <rect x="6" y="6" width="308" height="220" fill="#ffffff" fill-opacity="0.05"/>
+        <rect x="110" y="410" width="100" height="44" fill="#f59e0b" fill-opacity="0.16"/>
+        <rect x="6" y="6" width="308" height="450" rx="6" fill="none" stroke="#fff" stroke-opacity="0.6" stroke-width="2"/>
+        <line x1="6" y1="230" x2="314" y2="230" stroke="#fff" stroke-opacity="0.55" stroke-width="2"/>
+        <circle cx="160" cy="230" r="30" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="1.3"/>
+        <rect x="110" y="6" width="100" height="44" fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="1.2"/>
+        <rect x="110" y="410" width="100" height="44" fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="1.2"/>
+        <rect x="142" y="2" width="36" height="6" fill="#fff" fill-opacity="0.75"/>
+        <rect x="142" y="454" width="36" height="6" fill="#fff" fill-opacity="0.75"/>
+        <line x1="160" y1="8" x2="160" y2="454" stroke="#fff" stroke-opacity="0.4" stroke-width="1.6" stroke-dasharray="7 6"/>
+        <text x="160" y="26" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#eafff0" fill-opacity="0.7">ATTACKING HALF</text>
+        <text x="160" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#eafff0" fill-opacity="0.7">DEFENSIVE HALF</text>
+        <path d="M78 250 L160 152 L242 250 L160 330 Z" fill="none" stroke="#ffcf33" stroke-width="2" stroke-dasharray="8 6" stroke-opacity="0.9"/>
+        <line x1="160" y1="316" x2="160" y2="262" stroke="#9fd0ff" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ar-run)"/>
+        <g font-family="system-ui,sans-serif" font-weight="800" font-size="15" fill="#fff" text-anchor="middle">
+          <circle cx="160" cy="425" r="16" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/><text x="160" y="430">GK</text>
+          <circle cx="160" cy="335" r="17" fill="#22386B" stroke="#fff" stroke-width="1.5"/><text x="160" y="340">D</text>
+          <circle cx="78" cy="248" r="17" fill="#2563EB" stroke="#fff" stroke-width="1.5"/><text x="78" y="253">L</text>
+          <circle cx="242" cy="248" r="17" fill="#2563EB" stroke="#fff" stroke-width="1.5"/><text x="242" y="253">R</text>
+          <circle cx="160" cy="150" r="17" fill="#C8102E" stroke="#fff" stroke-width="1.5"/><text x="160" y="155">F</text>
+        </g>
+      </svg>
+      <div class="roles">
+        <div class="role" style="--rc:#f59e0b"><span class="rdot">GK</span><div><div class="rname">Goalkeeper</div><div class="rdesc">Stays in the box. Organises the back and starts play — doesn't wander up the field.</div></div></div>
+        <div class="role" style="--rc:#22386B"><span class="rdot">D</span><div><div class="rname">Defender</div><div class="rdesc">Stays in the defensive half. Can step out to win the ball when the opposition attacks, then recovers back. Main job: defend and win the ball.</div></div></div>
+        <div class="role" style="--rc:#2563EB"><span class="rdot">L</span><div><div class="rname">Left midfielder</div><div class="rdesc">Plays the left side only — <b>no crossing over</b>. Holds the width to stretch the field.</div></div></div>
+        <div class="role" style="--rc:#2563EB"><span class="rdot">R</span><div><div class="rname">Right midfielder</div><div class="rdesc">Plays the right side only — <b>no crossing over</b>. Holds the width to stretch the field.</div></div></div>
+        <div class="role" style="--rc:#C8102E"><span class="rdot">F</span><div><div class="rname">Forward</div><div class="rdesc">Stays in the attacking half, ready to receive and score. Leads the press when we lose the ball.</div></div></div>
+      </div>
+    </div>
+    <div style="overflow-x:auto"><table class="why-table">
+      <thead><tr><th>Why the diamond works</th><th>What it gives our players</th></tr></thead>
+      <tbody>
+        <tr><td>Natural passing angles</td><td>Diagonal, triangular passing lanes instead of dangerous flat passes across the field.</td></tr>
+        <tr><td>Field width</td><td>Wide midfielders stretch the field, pull defenders apart, and open up space.</td></tr>
+        <tr><td>No sweeper trap</td><td>Avoids a static player stuck too deep — everyone gets more touches and stays involved.</td></tr>
+        <tr><td>Clear roles</td><td>An intuitive sense of front, back, left, and right zones for young players.</td></tr>
+        <tr><td>Future transition</td><td>The same triangles and positions carry over to 7v7, 9v9, and 11v11 later.</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
   <section id="weeks" class="wrap">
