@@ -342,9 +342,17 @@
   .navlinks { display: flex; gap: 2px; font-size: .9rem; font-weight: 600; }
   .navlinks a { color: var(--ink); text-decoration: none; padding: 8px 12px; border-radius: 10px; }
   .navlinks a:hover { background: var(--surface-2); }
-  .navlinks a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  @media (max-width: 720px) { .navlinks a[href="#how"], .navlinks a[href="#groups"], .navlinks a[href="#location"] { display: none; } }
-  @media (max-width: 420px) { .lockup .l2 { display: none; } .navlinks a[href="#parents"] { display: none; } }
+  .navlinks a:focus-visible, .navpill:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .navpill { font-family: var(--sans); font-size: .86rem; font-weight: 700; cursor: pointer; color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line)); border-radius: 999px; padding: 6px 13px; white-space: nowrap; line-height: 1; }
+  .navpill:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .navpill + .navpill { margin-left: 4px; }
+  .backpill { font-family: var(--sans); font-size: .9rem; font-weight: 700; cursor: pointer; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 16px 8px 13px; display: inline-flex; align-items: center; gap: 7px; box-shadow: var(--shadow); margin-bottom: 20px; }
+  .backpill:hover { background: var(--surface-2); border-color: var(--accent); color: var(--accent); }
+  .backpill:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .subview[hidden] { display: none !important; }
+  @media (max-width: 720px) { .navlinks a[href="#how"], .navlinks a[href="#groups"], .navlinks a[href="#location"] { display: none; } .navlinks { gap: 4px; } }
+  @media (max-width: 560px) { .navwrap { flex-wrap: wrap; } .navlinks { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 6px; } }
+  @media (max-width: 420px) { .lockup .l2 { display: none; } .navpill { padding: 6px 10px; font-size: .8rem; } }
   .hero .wrap { padding-bottom: 6px; }
   .ftr { display: flex; align-items: center; gap: 13px; justify-content: center; text-align: left; }
   .fcrest { flex: none; }
@@ -385,9 +393,9 @@
       <a href="#weeks">The Plan</a>
       <a href="#location">Location</a>
       <a href="#groups">Groups</a>
-      <a href="#gameday">Gameday</a>
       <a href="#how">Format</a>
-      <a href="#parents">Parents</a>
+      <button type="button" class="navpill" data-view="gameday">🛡️ Team Shape</button>
+      <button type="button" class="navpill" data-view="parents">👪 For Parents</button>
     </div>
   </div>
 </nav>
@@ -407,7 +415,7 @@
 </header>
 
 <main>
-  <section id="thisweek" class="wrap">
+  <section id="thisweek" class="wrap homesec">
     <div class="sec-head">
       <div class="eyebrow" style="color:var(--accent)">Start Here</div>
       <h2>This week's session</h2>
@@ -417,7 +425,7 @@
     <div id="thisweek-card"></div>
   </section>
 
-  <section id="location" class="wrap">
+  <section id="location" class="wrap homesec">
     <div class="sec-head">
       <div class="eyebrow">Where We Train</div>
       <h2>Training location</h2>
@@ -473,7 +481,7 @@
     </div>
   </section>
 
-  <section id="how" class="wrap">
+  <section id="how" class="wrap homesec">
     <div class="sec-head">
       <div class="eyebrow">The Format</div>
       <h2>How every session runs</h2>
@@ -486,7 +494,7 @@
     </div>
   </section>
 
-  <section id="groups" class="wrap">
+  <section id="groups" class="wrap homesec">
     <div class="sec-head">
       <div class="eyebrow">Teams</div>
       <h2>Groups &amp; Coaches</h2>
@@ -518,7 +526,8 @@
     </div>
   </section>
 
-  <section id="gameday" class="wrap">
+  <section id="gameday" class="wrap subview" hidden>
+    <button type="button" class="backpill" data-back>← Back to the plan</button>
     <div class="sec-head">
       <div class="eyebrow" style="color:var(--accent)">Game Day</div>
       <h2>Shape — the 5v5 diamond</h2>
@@ -569,7 +578,7 @@
     </table></div>
   </section>
 
-  <section id="weeks" class="wrap">
+  <section id="weeks" class="wrap homesec">
     <div class="sec-head">
       <div class="eyebrow">All 12 Weeks</div>
       <h2>Full season plan</h2>
@@ -588,7 +597,8 @@
     <div class="weeks" id="weekList"></div>
   </section>
 
-  <section id="parents" class="wrap">
+  <section id="parents" class="wrap subview" hidden>
+    <button type="button" class="backpill" data-back>← Back to the plan</button>
     <div class="sec-head"><div class="eyebrow">For Parents</div><h2>Before you come</h2><p>A few things that keep every session running smoothly for the little ones.</p></div>
     <div class="parent-grid">
       <div class="pcard"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 7l1.5 12.5a1 1 0 0 0 1 .9h11a1 1 0 0 0 1-.9L20 7M9 7V5a3 3 0 0 1 6 0v2"/></svg>What to bring</h3><ul><li>Soccer ball (labeled with your child's name)</li><li>Shin guards</li><li>Cleats</li><li>Training uniform</li><li>Water bottle</li></ul></div>
@@ -1222,6 +1232,32 @@
     weeks.forEach(w => { w.open = anyClosed; });
     expandBtn.textContent = anyClosed ? "Collapse all" : "Expand all";
   });
+
+  /* Pill views — Team Shape and For Parents open as their own view instead of living on the main page */
+  const homeSecs = [...document.querySelectorAll(".homesec")];
+  const subViews = [...document.querySelectorAll(".subview")];
+  const heroEl = document.getElementById("top");
+  function showHome() {
+    subViews.forEach(v => v.hidden = true);
+    homeSecs.forEach(s => s.hidden = false);
+    if (heroEl) heroEl.hidden = false;
+  }
+  function showView(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    if (heroEl) heroEl.hidden = true;
+    homeSecs.forEach(s => s.hidden = true);
+    subViews.forEach(v => v.hidden = (v !== target));
+    window.scrollTo({ top: 0, behavior: "auto" });
+    const bp = target.querySelector(".backpill"); if (bp) bp.focus({ preventScroll: true });
+  }
+  document.querySelectorAll(".navpill[data-view]").forEach(p =>
+    p.addEventListener("click", () => showView(p.dataset.view)));
+  document.querySelectorAll("[data-back]").forEach(b =>
+    b.addEventListener("click", () => { showHome(); window.scrollTo({ top: 0, behavior: "auto" }); }));
+  /* A home nav link should always bring you back to the main page first, then jump */
+  document.querySelectorAll('.navlinks a[href^="#"]').forEach(a =>
+    a.addEventListener("click", () => showHome()));
 </script>
 </body>
 </html>
