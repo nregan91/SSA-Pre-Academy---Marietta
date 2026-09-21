@@ -137,12 +137,12 @@
 
   .board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .quad { border: 1px solid var(--line); border-top: 3px solid var(--qc, var(--accent)); border-radius: 12px; background: var(--surface); overflow: hidden; display: flex; flex-direction: column; }
-  .qhead { display: flex; align-items: center; gap: 8px; padding: 9px 11px 7px; }
-  .qnum { display: inline-flex; align-items: center; gap: 7px; font-family: var(--sans); font-weight: 800; font-size: .95rem; color: var(--ink); }
+  .qhead { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 9px; padding: 9px 11px 8px; }
+  .qnum { display: inline-flex; align-items: center; gap: 7px; font-family: var(--sans); font-weight: 800; font-size: .82rem; color: var(--muted); flex: none; }
   .qnum .cdot { width: 9px; height: 9px; border-radius: 50%; background: var(--qc, var(--accent)); flex: none; }
+  .qturn { font-family: var(--sans); font-weight: 800; font-size: .95rem; color: var(--ink); line-height: 1.2; }
   .qmini { background: color-mix(in srgb, var(--pitch) 7%, var(--surface-2)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 6px; }
-  .qtitle { padding: 8px 11px 10px; font-weight: 600; font-size: .9rem; flex: 1; }
-  .qcoachline { border-top: 1px solid var(--line); padding: 7px 11px; font-size: .76rem; font-weight: 600; line-height: 1.3; color: var(--qc, var(--accent)); background: color-mix(in srgb, var(--qc, var(--accent)) 7%, var(--surface)); }
+  .qcoachline { margin-top: auto; border-top: 1px solid var(--line); padding: 7px 11px; font-size: .76rem; font-weight: 600; line-height: 1.3; color: var(--qc, var(--accent)); background: color-mix(in srgb, var(--qc, var(--accent)) 7%, var(--surface)); }
 
   .dates { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
   .dchip { display: inline-flex; align-items: center; gap: 5px; font-size: .78rem; font-weight: 600; color: var(--ink); background: var(--surface-2); border: 1px solid var(--line); border-radius: 7px; padding: 2px 8px; font-variant-numeric: tabular-nums; }
@@ -1088,9 +1088,8 @@
 
   function boardHTML(stations, topic) {
     const q = stations.map((s, i) => `<div class="quad" style="--qc:${COACH[i].c}">
-        <div class="qhead"><span class="qnum"><span class="cdot"></span>Grid ${i + 1}</span></div>
+        <div class="qhead"><span class="qnum"><span class="cdot"></span>Grid ${i + 1}</span><span class="qturn">${esc(s.t)}</span></div>
         <div class="qmini">${diagram(ARCH[s.a](), TCOLOR[topic])}</div>
-        <div class="qtitle">${esc(s.t)}</div>
         <div class="qcoachline">${esc(COACH[i].n)}</div>
       </div>`);
     return `<div class="board">
