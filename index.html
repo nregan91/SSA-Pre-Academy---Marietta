@@ -359,13 +359,15 @@
   footer { text-align: left; }
   footer strong { color: var(--ink); }
   /* Gameday / Shape */
-  .gameday-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 22px; align-items: start; margin-top: 6px; }
-  .formation { width: 100%; max-width: 340px; height: auto; display: block; border-radius: 12px; box-shadow: var(--shadow); }
-  .roles { display: flex; flex-direction: column; gap: 10px; }
-  .role { display: flex; gap: 12px; align-items: flex-start; border: 1px solid var(--line); border-left: 4px solid var(--rc, var(--accent)); border-radius: 12px; background: var(--surface); padding: 12px 14px; box-shadow: var(--shadow); }
-  .role .rdot { width: 26px; height: 26px; border-radius: 50%; background: var(--rc, var(--accent)); color: #fff; display: grid; place-items: center; font-family: var(--sans); font-weight: 800; font-size: .72rem; flex: none; }
-  .role .rname { font-family: var(--sans); font-weight: 800; color: var(--ink); }
-  .role .rdesc { color: var(--muted); font-size: .9rem; margin-top: 2px; line-height: 1.45; }
+  .gameday-wrap { display: block; margin-top: 6px; }
+  .formation { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto 22px; border-radius: 12px; box-shadow: var(--shadow); }
+  .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 12px; }
+  .role { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: center; border: 1px solid var(--line); border-left: 4px solid var(--rc, var(--accent)); border-radius: 12px; background: var(--surface); padding: 12px 14px; box-shadow: var(--shadow); }
+  .role .rpitch { display: block; }
+  .role .rpitch svg { display: block; width: 92px; height: auto; border-radius: 8px; }
+  .role .rdot { width: 24px; height: 24px; border-radius: 50%; background: var(--rc, var(--accent)); color: #fff; display: inline-grid; place-items: center; font-family: var(--sans); font-weight: 800; font-size: .68rem; flex: none; }
+  .role .rname { display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 800; color: var(--ink); }
+  .role .rdesc { color: var(--muted); font-size: .88rem; margin-top: 4px; line-height: 1.45; }
   .role .rdesc b { color: var(--ink); }
   .why-table { width: 100%; border-collapse: collapse; font-size: .92rem; margin-top: 20px; }
   .why-table th, .why-table td { border: 1px solid var(--line); padding: 10px 13px; text-align: left; vertical-align: top; line-height: 1.45; }
@@ -559,11 +561,11 @@
         </g>
       </svg>
       <div class="roles">
-        <div class="role" style="--rc:#f59e0b"><span class="rdot">GK</span><div><div class="rname">Goalkeeper</div><div class="rdesc">Stays in the box. Organises the back and starts play — doesn't wander up the field.</div></div></div>
-        <div class="role" style="--rc:#22386B"><span class="rdot">D</span><div><div class="rname">Defender</div><div class="rdesc">Stays in the defensive half. Can step out to win the ball when the opposition attacks, then recovers back. Main job: defend and win the ball.</div></div></div>
-        <div class="role" style="--rc:#2563EB"><span class="rdot">L</span><div><div class="rname">Left midfielder</div><div class="rdesc">Plays the left side only — <b>no crossing over</b>. Holds the width to stretch the field.</div></div></div>
-        <div class="role" style="--rc:#2563EB"><span class="rdot">R</span><div><div class="rname">Right midfielder</div><div class="rdesc">Plays the right side only — <b>no crossing over</b>. Holds the width to stretch the field.</div></div></div>
-        <div class="role" style="--rc:#C8102E"><span class="rdot">F</span><div><div class="rname">Forward</div><div class="rdesc">Stays in the attacking half, ready to receive and score. Leads the press when we lose the ball.</div></div></div>
+        <div class="role" data-pos="gk" style="--rc:#f59e0b"><span class="rpitch"></span><div class="rtext"><div class="rname"><span class="rdot">GK</span>Goalkeeper</div><div class="rdesc">Stays in the box. Organises the back and starts play — doesn't wander up the field.</div></div></div>
+        <div class="role" data-pos="def" style="--rc:#22386B"><span class="rpitch"></span><div class="rtext"><div class="rname"><span class="rdot">D</span>Defender</div><div class="rdesc">Stays in the defensive half. Can step out to win the ball when the opposition attacks, then recovers back. Main job: defend and win the ball.</div></div></div>
+        <div class="role" data-pos="left" style="--rc:#2563EB"><span class="rpitch"></span><div class="rtext"><div class="rname"><span class="rdot">L</span>Left midfielder</div><div class="rdesc">Plays the left side only — <b>no crossing over</b>. Holds the width to stretch the field.</div></div></div>
+        <div class="role" data-pos="right" style="--rc:#7C3AED"><span class="rpitch"></span><div class="rtext"><div class="rname"><span class="rdot">R</span>Right midfielder</div><div class="rdesc">Plays the right side only — <b>no crossing over</b>. Holds the width to stretch the field.</div></div></div>
+        <div class="role" data-pos="fwd" style="--rc:#C8102E"><span class="rpitch"></span><div class="rtext"><div class="rname"><span class="rdot">F</span>Forward</div><div class="rdesc">Stays in the attacking half, ready to receive and score. Leads the press when we lose the ball.</div></div></div>
       </div>
     </div>
     <div style="overflow-x:auto"><table class="why-table">
@@ -1258,6 +1260,35 @@
   /* A home nav link should always bring you back to the main page first, then jump */
   document.querySelectorAll('.navlinks a[href^="#"]').forEach(a =>
     a.addEventListener("click", () => showHome()));
+
+  /* Per-position mini-pitches on the Shape page — each highlights the zone that player stays in */
+  (function () {
+    const POS = { gk: [60, 150], def: [60, 120], left: [30, 92], right: [90, 92], fwd: [60, 55] };
+    const LTR = { gk: "GK", def: "D", left: "L", right: "R", fwd: "F" };
+    const ZONE = {
+      gk: [[35, 140, 50, 26]],
+      def: [[4, 85, 112, 81]],
+      left: [[4, 4, 56, 162]],
+      right: [[60, 4, 56, 162]],
+      fwd: [[4, 4, 112, 81]]
+    };
+    function pitch(pos, color) {
+      const zones = ZONE[pos].map(z => `<rect x="${z[0]}" y="${z[1]}" width="${z[2]}" height="${z[3]}" rx="3" fill="${color}" fill-opacity="0.32" stroke="${color}" stroke-opacity="0.95" stroke-width="1.8"/>`).join("");
+      const lines = `<rect x="4" y="4" width="112" height="162" rx="4" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="1.3"/><line x1="4" y1="85" x2="116" y2="85" stroke="#fff" stroke-opacity="0.5" stroke-width="1.1"/><circle cx="60" cy="85" r="14" fill="none" stroke="#fff" stroke-opacity="0.45" stroke-width="1"/><rect x="35" y="140" width="50" height="26" fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="1"/><rect x="35" y="4" width="50" height="26" fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="1"/>`;
+      let dots = "";
+      for (const k in POS) {
+        const [x, y] = POS[k];
+        if (k === pos) dots += `<circle cx="${x}" cy="${y}" r="9" fill="${color}" stroke="#fff" stroke-width="1.6"/><text x="${x}" y="${y + 3}" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="9" fill="#fff">${LTR[k]}</text>`;
+        else dots += `<circle cx="${x}" cy="${y}" r="5" fill="#ffffff" fill-opacity="0.3"/>`;
+      }
+      return `<svg viewBox="0 0 120 170" role="img" aria-label="${LTR[pos]} playing zone" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="120" height="170" rx="7" fill="#2f7d3a"/>${zones}${lines}${dots}</svg>`;
+    }
+    document.querySelectorAll(".role[data-pos]").forEach(r => {
+      const color = (getComputedStyle(r).getPropertyValue("--rc").trim()) || "#2563EB";
+      const holder = r.querySelector(".rpitch");
+      if (holder) holder.innerHTML = pitch(r.dataset.pos, color);
+    });
+  })();
 </script>
 </body>
 </html>
