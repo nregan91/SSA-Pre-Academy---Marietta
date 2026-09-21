@@ -697,7 +697,11 @@
     waves: () => [goal("right"), player(48, 54, "a"), player(48, 100, "a"), player(140, 76, "b", "D"), ball(56, 60), arr([56, 60], [118, 66], "dribble"), arr([150, 72], [212, 74], "shot")],
     turnGate: () => [player(30, 74, "a"), ball(38, 80), cone(178, 74), arr([42, 72], [166, 72], "dribble"), arr([170, 86], [46, 86], "dribble"), txt(178, 56, "turn!")],
     turnBox: () => [zone(46, 30, 148, 88), player(84, 60, "a"), ball(90, 66), player(150, 92, "a"), ball(156, 98), arr([84, 60], [130, 60], "dribble"), arr([130, 60], [96, 92], "dribble"), txt(120, 132, "Turn on the whistle")],
-    turn1v1: () => [goal("left"), coach(206, 74), player(150, 74, "a", "A"), ball(158, 80), player(186, 74, "b", "D"), arr([200, 74], [166, 74], "pass"), arr([158, 82], [96, 74], "dribble"), txt(150, 56, "Receive · turn · go")]
+    turn1v1: () => [goal("left"), coach(206, 74), player(150, 74, "a", "A"), ball(158, 80), player(186, 74, "b", "D"), arr([200, 74], [166, 74], "pass"), arr([158, 82], [96, 74], "dribble"), txt(150, 56, "Receive · turn · go")],
+    hookIn: () => [player(30, 74, "a"), ball(38, 80), cone(176, 74), arr([44, 68], [164, 68], "dribble"), arr([168, 86], [48, 86], "dribble"), txt(176, 52, "Inside hook")],
+    hookOut: () => [player(30, 74, "a"), ball(38, 80), cone(176, 74), arr([44, 82], [164, 82], "dribble"), arr([168, 66], [48, 66], "dribble"), txt(176, 104, "Outside hook")],
+    pullback: () => [player(30, 74, "a"), ball(38, 80), cone(150, 58), cone(150, 92), arr([44, 74], [138, 74], "dribble"), arr([138, 88], [52, 88], "dribble"), txt(150, 116, "Sole → drag back")],
+    scissor: () => [player(26, 74, "a"), ball(34, 80), player(150, 74, "b", "D"), arr([40, 78], [130, 74], "dribble"), arr([150, 66], [206, 46], "dribble"), txt(110, 118, "Step-over → outside → go")]
   };
 
   /* Two progressions per grid — make it easier or harder for the group's level. */
@@ -728,7 +732,11 @@
     waves: { e: "2v1 in the attackers' favour.", h: "Make it even (2v2); defenders go live." },
     turnGate: { e: "Slow, big turns; walk to the cone.", h: "Add a time limit; weak foot only." },
     turnBox: { e: "Bigger box, fewer players.", h: "Shrink the box; call turns more often." },
-    turn1v1: { e: "Defender shadows only (passive).", h: "Defender goes live once you turn." }
+    turn1v1: { e: "Defender shadows only (passive).", h: "Defender goes live once you turn." },
+    hookIn: { e: "Walk it; big, slow hook, no time limit.", h: "Add a cone-defender and a time limit; weak foot only." },
+    hookOut: { e: "Slow it down; exaggerate the chop.", h: "Call which way to turn; weak foot only." },
+    pullback: { e: "Start with the ball still — foot on top, drag, go.", h: "Add a chasing partner; drag back and accelerate." },
+    scissor: { e: "Cone as the defender; walk through the step-over.", h: "Live but passive defender; sell the fake before you go." }
   };
 
   const yt = (q) => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
@@ -815,22 +823,22 @@
       points: ["Small touch into the turn", "Look before you turn", "Sole, inside & outside", "Accelerate out of it"],
       home: { t: "Turn practice", d: "Dribble to a spot, turn with the sole, and go back — 20 turns each foot.", v: "soccer turning drills for kids at home" },
       sessions: {
-        mon: { warm: "Sole rolls & drag-backs — roll the ball across, drag it back, both feet.",
+        mon: { warm: "Sole rolls & drag-backs — roll the ball across your body, drag it back, both feet.",
           stations: [
-            { t: "Turn at the Cone", a: "turnGate", d: "Dribble to the cone, turn with the sole, and dribble back.", v: "turn at the cone soccer drill youth" },
-            { t: "Stop & Turn", a: "lane", d: "Dribble the lane; on the whistle, stop the ball and turn to go back.", v: "stop and turn soccer drill kids" },
-            { t: "Turn Box", a: "turnBox", d: "Dribble in the box; on a call, turn away from everyone into space.", v: "turning in a box soccer drill youth" },
-            { t: "Gate Turns", a: "turnGate", d: "Dribble through a gate, turn, and come back through.", v: "turning gates soccer drill kids" }
+            { t: "Inside Hook", a: "hookIn", d: "Dribble to the cone and hook the ball back with the inside of your foot.", v: "inside hook turn soccer tutorial for kids" },
+            { t: "Outside Hook", a: "hookOut", d: "Dribble to the cone and chop it back with the outside of your foot.", v: "outside hook turn soccer tutorial for kids" },
+            { t: "Pull Back", a: "pullback", d: "Sole on top of the ball, drag it back, then turn and go the other way.", v: "pull back drag back turn soccer tutorial kids" },
+            { t: "Scissor", a: "scissor", d: "Step over the ball to sell a fake, then take it away with the outside of the other foot.", v: "scissor step over move soccer tutorial for kids" }
           ],
-          ssg: { a: "game", t: "5v5/6v6 — turn to escape", d: "A game where turning away from pressure keeps the ball.", v: "small sided game turning youth soccer" } },
-        wed: { warm: "Inside/outside hooks — turn the ball with the inside, then the outside, both feet.",
+          ssg: { a: "game", t: "5v5/6v6 — turn to escape", d: "A game where turning away from pressure keeps the ball. Shout out the turns you see.", v: "small sided game turning youth soccer" } },
+        wed: { warm: "Inside & outside hooks — turn the ball with the inside, then the outside, both feet.",
           stations: [
-            { t: "Sole-Roll Turns", a: "turnBox", d: "Roll the ball across your body to turn away from a partner.", v: "sole roll turn soccer drill kids" },
-            { t: "Traffic Turns", a: "traffic", d: "Dribble in a busy box; turn to avoid bumping anyone.", v: "turning traffic soccer drill youth" },
-            { t: "Clock Turns", a: "turnGate", d: "Dribble to a cone, turn, and go to the next cone around the circle.", v: "turning clock soccer drill kids" },
-            { t: "Turn Race", a: "slalom", d: "Race to the cone, turn, and dribble back — first team wins.", v: "turning race soccer drill youth" }
+            { t: "Inside Hook — Beat the Cone", a: "hookIn", d: "Race at the cone-defender, inside-hook away into space, and dribble back to your line.", v: "inside hook turn 1v1 soccer drill youth" },
+            { t: "Outside Hook — Beat the Cone", a: "hookOut", d: "Attack the cone, outside-hook into space, and accelerate out the other way.", v: "outside hook turn 1v1 soccer drill youth" },
+            { t: "Pull Back — Escape", a: "pullback", d: "A partner gives light chase; drag the ball back to escape and change direction.", v: "pull back turn under pressure soccer drill youth" },
+            { t: "Scissor — 1v1", a: "scissor", d: "Take on a passive defender with a scissor and drive past to the line.", v: "scissor move 1v1 soccer drill youth" }
           ],
-          ssg: { a: "game", t: "5v5/6v6 — turn & go", d: "Reward players who turn out of trouble and drive forward.", v: "small sided game dribbling youth soccer" } }
+          ssg: { a: "game", t: "5v5/6v6 — turn & go", d: "Reward players who turn out of trouble and drive forward.", v: "small sided game turning youth soccer" } }
       } },
 
     { n: 5, mon: "Sep 28", wed: "Sep 30", topic: "Passing", phase: "Introduce",
@@ -1062,7 +1070,11 @@
     waves: { setup: "A goal; attackers wait in a line; a defender in front; balls ready.", instructions: ["A group attacks the goal, then the next wave goes.", "Stay wide as you attack.", "Finish, then clear the area."], coaching: ["Stay wide — don't bunch.", "Attack at pace.", "Finish the move."], questions: ["How did you use the width?", "When did you shoot?"], mistakes: ["Bunching in the middle.", "Slow attack.", "No finish."] },
     turnGate: { setup: "A cone (or gate) 8–10 yds ahead; run 2–3 lanes so no more than 3 wait.", instructions: ["Dribble to the cone.", "Turn with the sole, inside or outside.", "Accelerate back the other way."], coaching: ["Small touch into the turn.", "Look before you turn.", "Explode out of it."], questions: ["Which turn felt fastest?", "How close did you keep the ball?"], mistakes: ["Big touch past the cone.", "Slow, loopy turn.", "Head down."] },
     turnBox: { setup: "A 12×12 box; each player a ball; partners/space to turn away from.", instructions: ["Dribble in the box.", "On a call, turn away from pressure.", "Use both feet and different turns."], coaching: ["Head up to pick your turn.", "Turn tight, then accelerate.", "Both feet."], questions: ["Which turn helped you escape?", "How did you find space to turn into?"], mistakes: ["Turning into trouble.", "Big touch on the turn.", "One turn or one foot only."] },
-    turn1v1: { setup: "A feeder/coach, an attacker with back to goal, a defender behind, and a goal/line to attack.", instructions: ["Receive with your back to the defender.", "Feel them, then turn away.", "Attack the goal or line."], coaching: ["Check your shoulder first.", "First touch to turn, away from the defender.", "Explode after the turn."], questions: ["Which way should you turn — where's the space?", "How did you protect the turn?"], mistakes: ["Turning into the defender.", "Heavy first touch.", "Turning too slowly."] }
+    turn1v1: { setup: "A feeder/coach, an attacker with back to goal, a defender behind, and a goal/line to attack.", instructions: ["Receive with your back to the defender.", "Feel them, then turn away.", "Attack the goal or line."], coaching: ["Check your shoulder first.", "First touch to turn, away from the defender.", "Explode after the turn."], questions: ["Which way should you turn — where's the space?", "How did you protect the turn?"], mistakes: ["Turning into the defender.", "Heavy first touch.", "Turning too slowly."] },
+    hookIn: { setup: "A cone 8–10 yds ahead; run 2–3 short lines so no more than 3 wait per line.", instructions: ["Dribble at the cone with small touches.", "Reach around the ball and hook it back with the INSIDE of your foot.", "Turn your body and accelerate the other way."], coaching: ["Small touch just before the cone.", "Inside of the foot wraps around the ball.", "Turn tight, then explode out."], questions: ["Which foot's inside did you use?", "How close did you keep the ball to the cone?"], mistakes: ["Big touch past the cone.", "Hooking with the toe.", "No acceleration out of the turn."] },
+    hookOut: { setup: "A cone 8–10 yds ahead; 2–3 lines so no more than 3 wait.", instructions: ["Dribble at the cone.", "Chop the ball back with the OUTSIDE of your foot.", "Open your hips away and drive out."], coaching: ["Little-toe / outside cuts across the ball.", "Turn away from where a defender would be.", "First step is explosive."], questions: ["Inside or outside hook — which felt quicker for you?", "Which way did you turn to find space?"], mistakes: ["Ball too far ahead to reach.", "Turning slowly.", "Using the sole instead of the outside."] },
+    pullback: { setup: "A line or two cones 8–10 yds ahead; run 2–3 lanes, max 3 waiting.", instructions: ["Dribble up to the line.", "Put the SOLE of your foot on top of the ball.", "Drag it back, turn, and go the other way."], coaching: ["Balance on your standing foot.", "Light foot on top — don't stand on it.", "Drag back, then accelerate."], questions: ["Did the ball stay under your foot?", "How fast could you go after the drag-back?"], mistakes: ["Stepping on the ball and slipping.", "Dragging it too far.", "No burst out of the turn."] },
+    scissor: { setup: "An attacker with a ball, a cone or passive defender ahead, space to exit either side. 2–3 lines, max 3 waiting.", instructions: ["Dribble at the defender.", "Swing one foot AROUND the ball (the step-over) to sell a fake.", "Push the ball away with the OUTSIDE of the other foot and go."], coaching: ["Sell the fake — big step-over, drop the shoulder.", "Change pace right after the fake.", "Take the ball into space, not into the defender."], questions: ["Which way did the defender lean?", "When is the best moment to explode past?"], mistakes: ["Step-over too small to fool anyone.", "No speed change after the move.", "Ball pushed into the defender."] }
   };
 
   const watchLink = (q) => `<span class="watch"><a href="${yt(q)}" target="_blank" rel="noopener noreferrer"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch a demo</a></span>`;
