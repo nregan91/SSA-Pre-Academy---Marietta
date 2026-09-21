@@ -1166,11 +1166,13 @@
 
   document.getElementById("weekList").innerHTML = WEEKS.map(weekCard).join("");
 
-  /* This week (auto-selected by date) featured at the top */
+  /* This week — pinned manually. Bump PINNED_WEEK as the season moves on;
+     set it to null to auto-select by date instead. */
+  const PINNED_WEEK = 4;
   const today = new Date();
   // Each week stays current through the Thursday after its Wednesday session, then rolls to the next week on Friday.
   const rollAfter = (w) => { const d = new Date(w.wed + " 2026 00:00:00"); d.setDate(d.getDate() + 1); d.setHours(23, 59, 59, 999); return d; };
-  let current = WEEKS.find(w => rollAfter(w) >= today) || WEEKS[WEEKS.length - 1];
+  let current = (PINNED_WEEK != null && WEEKS.find(w => w.n === PINNED_WEEK)) || WEEKS.find(w => rollAfter(w) >= today) || WEEKS[WEEKS.length - 1];
   const twHost = document.getElementById("thisweek-card");
   if (twHost) {
     twHost.innerHTML = weekCard(current);
