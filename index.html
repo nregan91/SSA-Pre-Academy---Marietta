@@ -332,27 +332,24 @@
 
   /* ---- SSA Swarm brand chrome ---- */
   .topnav { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-  .navwrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 9px; padding-bottom: 9px; }
+  .navwrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; padding-top: 9px; padding-bottom: 9px; }
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
   .brand:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
   .navcrest { display: block; flex: none; }
   .lockup { line-height: 1.05; }
   .lockup .l1 { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); }
   .lockup .l2 { display: block; font-size: .98rem; font-weight: 700; color: var(--ink); }
-  .navlinks { display: flex; gap: 2px; font-size: .9rem; font-weight: 600; }
-  .navlinks a { color: var(--ink); text-decoration: none; padding: 8px 12px; border-radius: 10px; }
-  .navlinks a:hover { background: var(--surface-2); }
+  .navlinks { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .navlinks a, .navpill { font-family: var(--sans); font-size: .85rem; font-weight: 700; line-height: 1; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 14px; }
+  .navlinks a:hover, .navpill:hover { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
   .navlinks a:focus-visible, .navpill:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  .navpill { font-family: var(--sans); font-size: .86rem; font-weight: 700; cursor: pointer; color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line)); border-radius: 999px; padding: 6px 13px; white-space: nowrap; line-height: 1; }
-  .navpill:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-  .navpill + .navpill { margin-left: 4px; }
   .backpill { font-family: var(--sans); font-size: .9rem; font-weight: 700; cursor: pointer; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 16px 8px 13px; display: inline-flex; align-items: center; gap: 7px; box-shadow: var(--shadow); margin-bottom: 20px; }
   .backpill:hover { background: var(--surface-2); border-color: var(--accent); color: var(--accent); }
   .backpill:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
   .subview[hidden] { display: none !important; }
   @media (max-width: 720px) { .navlinks a[href="#how"], .navlinks a[href="#groups"], .navlinks a[href="#location"] { display: none; } .navlinks { gap: 4px; } }
-  @media (max-width: 560px) { .navwrap { flex-wrap: wrap; } .navlinks { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 6px; } }
-  @media (max-width: 420px) { .lockup .l2 { display: none; } .navpill { padding: 6px 10px; font-size: .8rem; } }
+  @media (max-width: 860px) { .navlinks { width: 100%; justify-content: flex-start; } }
+  @media (max-width: 420px) { .lockup .l2 { display: none; } .navlinks a, .navpill { padding: 6px 11px; font-size: .78rem; } }
   .hero .wrap { padding-bottom: 6px; }
   .ftr { display: flex; align-items: center; gap: 13px; justify-content: center; text-align: left; }
   .fcrest { flex: none; }
@@ -392,12 +389,12 @@
     </a>
     <div class="navlinks">
       <a href="#thisweek">This Week</a>
-      <a href="#weeks">The Plan</a>
+      <a href="#weeks">Full Season Plan</a>
       <a href="#location">Location</a>
       <a href="#groups">Groups</a>
       <a href="#how">Format</a>
-      <button type="button" class="navpill" data-view="gameday">🛡️ Team Shape</button>
-      <button type="button" class="navpill" data-view="parents">👪 For Parents</button>
+      <button type="button" class="navpill" data-view="gameday">Team Shape</button>
+      <button type="button" class="navpill" data-view="parents">For Parents</button>
     </div>
   </div>
 </nav>
@@ -431,14 +428,13 @@
     <div class="sec-head">
       <div class="eyebrow">Where We Train</div>
       <h2>Training location</h2>
-      <p>We're at the Mud Creek complex. The fields we'll use are highlighted below.</p>
+      <p>We're at the Mud Creek complex, on the turf pad — Field 2. Our grids are highlighted below.</p>
     </div>
     <div class="loc-cards">
-      <div class="loc-card now"><span class="loc-badge">Now</span><div><b>Fields 5C &amp; 5D</b><div class="lc-d">Grass fields on the far right — while the turf is closed.</div></div></div>
-      <div class="loc-card soon"><span class="loc-badge">When turf opens</span><div><b>Fields 2E &amp; 2G</b><div class="lc-d">We move onto the turf pad (left-center).</div></div></div>
+      <div class="loc-card now"><span class="loc-badge">Training here</span><div><b>Field 2 · E &amp; G</b><div class="lc-d">Our turf grids, left-center of the complex.</div></div></div>
     </div>
     <div class="locmap-wrap">
-      <svg viewBox="0 0 1000 300" class="locmap" role="img" aria-label="Mud Creek field map. Now: fields 5C and 5D. When turf opens: fields 2E and 2G.">
+      <svg viewBox="0 0 1000 300" class="locmap" role="img" aria-label="Mud Creek field map. We train on the turf, Field 2 grids E and G.">
         <rect x="0" y="0" width="1000" height="300" fill="#4a7a43"/>
         <rect x="250" y="14" width="470" height="34" rx="4" fill="#2b2f36"/>
         <text x="485" y="36" fill="#cfd3d8" font-family="var(--sans)" font-size="13" font-weight="600" text-anchor="middle">Parking</text>
@@ -454,9 +450,9 @@
           <rect x="302" y="64" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="91" fill="#e9f0e9">2B</text>
           <rect x="254" y="116" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="276" y="143" fill="#e9f0e9">2C</text>
           <rect x="302" y="116" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="143" fill="#e9f0e9">2D</text>
-          <rect x="254" y="168" width="44" height="44" rx="5" fill="#E8A317" stroke="#fff" stroke-width="3"/><text x="276" y="195" fill="#3a2a00">2E</text>
+          <rect x="254" y="168" width="44" height="44" rx="5" fill="#16a34a" stroke="#fff" stroke-width="3"/><text x="276" y="195" fill="#fff">2E</text>
           <rect x="302" y="168" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="195" fill="#e9f0e9">2F</text>
-          <rect x="254" y="220" width="44" height="44" rx="5" fill="#E8A317" stroke="#fff" stroke-width="3"/><text x="276" y="247" fill="#3a2a00">2G</text>
+          <rect x="254" y="220" width="44" height="44" rx="5" fill="#16a34a" stroke="#fff" stroke-width="3"/><text x="276" y="247" fill="#fff">2G</text>
           <rect x="302" y="220" width="44" height="44" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="324" y="247" fill="#e9f0e9">2H</text>
         </g>
         <!-- Fields 3 & 4 (not used) -->
@@ -471,15 +467,14 @@
         <text x="900" y="152" fill="#c9b6f0" font-family="var(--sans)" font-size="12" font-weight="700" text-anchor="middle">Field 5 · Grass</text>
         <g font-family="var(--sans)" font-size="15" font-weight="700" text-anchor="middle">
           <rect x="822" y="166" width="74" height="52" rx="6" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="859" y="198" fill="#e9f0e9">5A</text>
-          <rect x="904" y="166" width="74" height="52" rx="6" fill="#16a34a" stroke="#fff" stroke-width="3"/><text x="941" y="198" fill="#fff">5C</text>
+          <rect x="904" y="166" width="74" height="52" rx="6" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="941" y="198" fill="#e9f0e9">5C</text>
           <rect x="822" y="226" width="74" height="52" rx="6" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="859" y="258" fill="#e9f0e9">5B</text>
-          <rect x="904" y="226" width="74" height="52" rx="6" fill="#16a34a" stroke="#fff" stroke-width="3"/><text x="941" y="258" fill="#fff">5D</text>
+          <rect x="904" y="226" width="74" height="52" rx="6" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.3)"/><text x="941" y="258" fill="#e9f0e9">5D</text>
         </g>
       </svg>
     </div>
     <div class="loc-legend">
-      <span><i style="background:#16a34a"></i>Training now (turf closed) — 5C &amp; 5D</span>
-      <span><i style="background:#C67F0A"></i>When turf opens — 2E &amp; 2G</span>
+      <span><i style="background:#16a34a"></i>Field 2 · E &amp; G — our turf grids</span>
     </div>
   </section>
 
@@ -1192,7 +1187,7 @@
 
   /* This week — pinned manually. Bump PINNED_WEEK as the season moves on;
      set it to null to auto-select by date instead. */
-  const PINNED_WEEK = 4;
+  const PINNED_WEEK = 5;
   const today = new Date();
   // Each week stays current through the Thursday after its Wednesday session, then rolls to the next week on Friday.
   const rollAfter = (w) => { const d = new Date(w.wed + " 2026 00:00:00"); d.setDate(d.getDate() + 1); d.setHours(23, 59, 59, 999); return d; };
