@@ -111,6 +111,9 @@
   .party-emoji { font-size: 2.6rem; line-height: 1; flex: none; }
   .party-h { font-family: var(--sans); font-weight: 800; font-size: 1.3rem; color: var(--ink); margin-bottom: 5px; }
   .party-card p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 60ch; }
+  .party-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 12px; }
+  .party-meta span { display: inline-flex; align-items: center; gap: 7px; font-family: var(--sans); font-weight: 700; font-size: .88rem; color: var(--ink); }
+  .party-meta svg { color: var(--tcolor, var(--accent)); flex: none; }
   .chev { color: var(--muted); transition: transform .2s; flex: none; }
   .week[open] .chev { transform: rotate(180deg); }
 
@@ -321,8 +324,9 @@
   @media (max-width: 620px) { .stations { grid-template-columns: 1fr; } .ssg-card { grid-template-columns: 1fr; } }
   @media (max-width: 560px) {
     .phase { grid-template-columns: 62px 1fr; gap: 12px; }
-    .week > summary { grid-template-columns: auto 1fr auto; gap: 10px; }
-    .week .pill { grid-column: 2; justify-self: start; margin-top: 2px; }
+    .week > summary { grid-template-columns: auto 1fr; gap: 10px 12px; align-items: center; }
+    .week > summary > .daytoggle { grid-column: 1 / -1; width: 100%; }
+    .week > summary > .daytoggle .dbtn { flex: 1; justify-content: center; }
     .week .chev { display: none; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -1007,7 +1011,7 @@
           ssg: { a: "game", t: "5v5/6v6 with keepers", d: "Rotate a keeper each round. Reward composure and quick shots.", v: "soccer game with keepers youth shooting" } }
       } },
 
-    { n: 12, mon: "Nov 16", wed: "Nov 18", topic: "Small-Sided Games", phase: "Celebrate", party: true, label: "End of Season Party", note: "No training this week — it's our End of Season Party! A celebration of a fantastic fall of Pre Academy soccer. Date, time, and location to come — watch for details from Coach Nathan.",
+    { n: 12, mon: "Nov 16", wed: "Nov 18", topic: "Small-Sided Games", phase: "Celebrate", party: true, label: "End of Season Party", note: "No training this week — it's our End of Season Party! Come celebrate a fantastic fall of Pre Academy soccer. Exact date to be confirmed — watch for a note from Coach Nathan.", where: "Same place as training — Mud Creek, Field 2 (turf)", when: "6–7pm",
       points: ["Everyone touches the ball", "Find space", "Both teams have fun", "Chase and try"],
       home: { t: "Backyard games", d: "Play 1v1 or 2v2 in the yard with family. Just play and have fun.", v: "backyard soccer games for kids 2v2" },
       sessions: {
@@ -1170,7 +1174,7 @@
         <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
       <div class="wkbody">
-        <div class="party-card"><div class="party-emoji">🎉</div><div><div class="party-h">${esc(w.label || "End of Season Party")}</div><p>${esc(w.note || "")}</p></div></div>
+        <div class="party-card"><div class="party-emoji">🎉</div><div><div class="party-h">${esc(w.label || "End of Season Party")}</div><p>${esc(w.note || "")}</p>${(w.where || w.when) ? `<div class="party-meta">${w.where ? `<span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg>${esc(w.where)}</span>` : ""}${w.when ? `<span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${esc(w.when)}</span>` : ""}</div>` : ""}</div></div>
       </div>
     </details>`;
     }
